@@ -30,7 +30,8 @@ class QuestionsController < ApplicationController
     	@question.titulo = params[:question][:titulo]
     	@question.descripcion = params[:question][:descripcion]
     	@question.user_id = 2  #deberia ser current_user o algo asi.
-		@question.categories = params[:categories]
+		gen=Category.find_by(name: "General")
+		@question.categories = [gen]
     	#@question.estado = 'a' debe indicarse el id del user.
       #current_user.save  
       @question.save
