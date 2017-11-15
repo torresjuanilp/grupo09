@@ -15,7 +15,12 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
+	if current_user
+      @question = Question.new   
+    else 
+      flash[:danger] = "No cuenta con los permisos para publicar. REGISTRESE."
+      redirect_to ("/")
+    end
   end
 
   # GET /questions/1/edit
@@ -29,20 +34,22 @@ class QuestionsController < ApplicationController
     	@question = Question.new
     	@question.titulo = params[:question][:titulo]
     	@question.descripcion = params[:question][:descripcion]
-    	@question.user_id = 2  #deberia ser current_user o algo asi.
+    	@question.user_id = current_user.id  #deberia ser current_user o algo asi.
+
 		gen=Category.find_by(name: "General")
 		@question.categories = [gen]
-    	#@question.estado = 'a' debe indicarse el id del user.
+    	
       #current_user.save  
-      @question.save
-      redirect_to @question
-    #if @question.save
-     #   flash[:success] = "La pregunta ha sido publicada con exito."
-      #  redirect_to @question
-      #else 
-       # flash[:danger] = "Error al crear la pregunta...."
-       # redirect_to index
-     # end
+
+
+     if @question.save
+        flash[:success] = "La pregunta ha sido publicada con exito."
+        redirect_to @question
+      else 
+        flash[:danger] = "Error al crear la pregunta...."
+        redirect_to "/"
+      end
+
   end
 
   # PATCH/PUT /questions/1
