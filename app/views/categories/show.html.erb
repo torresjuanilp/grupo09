@@ -1,0 +1,29 @@
+
+<p>
+  <h3> Categoría:
+  <%= @category.name %>
+  </h3>
+  <strong> Preguntas en esta categoría </strong>
+  </br>
+</p>
+
+<p>
+<table>
+  <tr>
+    <th>Título</th>
+    <th>Cuerpo</th>
+  </tr>
+
+  <% @questions.each do |q| %>
+    <tr>
+      <td><%= q.titulo %></td>
+      <td><%= q.descripcion %></td>
+      <td><%= link_to 'Show', question_path(q) %></td>
+    </tr>
+  <% end %>
+</table>
+</br>
+<% if (@category.name != "General") && user_signed_in? %>
+	<%= button_to "Eliminar categoría", category_path , method: 'delete', class: 'category', :data => {:confirm => '¿Estás seguro?'} %>
+<% end %>
+</p>
