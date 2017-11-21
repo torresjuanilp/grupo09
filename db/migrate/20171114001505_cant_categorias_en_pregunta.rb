@@ -1,4 +1,4 @@
-class CantCategoriasEnPregunta < ActiveRecord::Migration[5.1.4]
+class CantCategoriasEnPregunta < ActiveRecord::Migration[5.1]
   def change
 	add_column :questions, :categorias, :integer
   end

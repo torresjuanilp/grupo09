@@ -1,4 +1,4 @@
-class CommentTable < ActiveRecord::Migration[5.1.4]
+class CommentTable < ActiveRecord::Migration[5.1]
   def change
 	 create_table "comments", force: :cascade do |t|
 		t.string "titulo"
