@@ -30,7 +30,7 @@
 				(5 máximo)
 			</td>
 			<td>
-				<%= collection_check_boxes(:question, :category_ids, Category.permitted, :id, :name)%>
+				<%= collection_check_boxes(:question, :category_ids, Category.all, :id, :name)%>
 			</td>		
 		</tr>
 	
