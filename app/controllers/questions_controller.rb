@@ -19,7 +19,9 @@ class QuestionsController < ApplicationController
       @question = Question.new   
     else 
       flash[:danger] = "No cuenta con los permisos para publicar. REGISTRESE."
+
       redirect_to "/"
+
     end
   end
 
@@ -34,7 +36,7 @@ class QuestionsController < ApplicationController
     	@question = Question.new(question_params)
     	@question.titulo = params[:question][:titulo]
     	@question.descripcion = params[:question][:descripcion]
-    	@question.user_id = current_user.id 
+         	@question.user_id = current_user.id 
     	if @question.category_ids.size > 5
 			flash[:danger] = "Elija 5 categorías como máximo."
 			redirect_to "/questions/new"
@@ -48,13 +50,18 @@ class QuestionsController < ApplicationController
 				redirect_to @question
 			else 
 				flash[:danger] = "Error al crear la pregunta...."
-				redirect_to "/"
+				redirect_to "/questions/new"
 			end
 		end
 			
       #current_user.save  
 
 
+ #deberia ser current_user o algo asi.
+
+
+    	
+      #current_user.save  
   end
 
   # PATCH/PUT /questions/1

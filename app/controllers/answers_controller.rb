@@ -64,7 +64,9 @@ end
     flash[:success] = "Se elimino el comentario correctamente"
     redirect_to "/questions"
   else
-    flash[:danger] = "No tiene permiso para eleminar este comentario"
+
+    flash[:error] = "No tiene permiso para eleminar este comentario"
+
     redirect_to "/questions"
   end
 end
