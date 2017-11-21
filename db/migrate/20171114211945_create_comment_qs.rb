@@ -1,4 +1,4 @@
-class CreateCommentQs < ActiveRecord::Migration[5.1]
+class CreateCommentQs < ActiveRecord::Migration[5.1.4]
   def change
     create_table :comment_qs do |t|
       t.string :titulo
