@@ -4,4 +4,7 @@ class Category < ApplicationRecord
 	validates_uniqueness_of :name
 	validates :name, :presence => true,
                      :length => { :minimum => 1 } 
+	
+	gen=Category.find_by(name:"General")
+	scope :permitted, -> { where.not ('name == "General"') }
 end

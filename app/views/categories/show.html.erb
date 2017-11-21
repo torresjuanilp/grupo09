@@ -8,22 +8,30 @@
 </p>
 
 <p>
-<table>
+<table class="table">
   <tr>
     <th>Título</th>
     <th>Cuerpo</th>
+	<th>Ver Pregunta</th>
   </tr>
 
-  <% @questions.each do |q| %>
-    <tr>
-      <td><%= q.titulo %></td>
-      <td><%= q.descripcion %></td>
-      <td><%= link_to 'Show', question_path(q) %></td>
-    </tr>
-  <% end %>
+	<% @questions.each do |q| %>
+		<tr>
+			<td><%= q.titulo %></td>
+			<td><%= q.descripcion %></td>
+			<td><%= link_to 'Show', question_path(q) %></td>
+		</tr>
+	<% end %>
+	
+	<tr>
+		<% if (@category.name != "General") && user_signed_in? %>
+		<td colspan="2" align="center" >
+			</br>
+			<%= button_to "Eliminar categoría", category_path , method: 'delete', class: 'category', :data => {:confirm => '¿Estás seguro?'} %>
+		</td>
+		<% end %>
+	</tr>
 </table>
 </br>
-<% if (@category.name != "General") && user_signed_in? %>
-	<%= button_to "Eliminar categoría", category_path , method: 'delete', class: 'category', :data => {:confirm => '¿Estás seguro?'} %>
-<% end %>
+
 </p>

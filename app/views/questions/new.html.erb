@@ -1,25 +1,45 @@
+<%= flash[:message] %>
+
 <h1>Crear nueva pregunta</h1>
 
 
 <%= form_for @question , url: {action:"create"} do |q| %>
+	
 	<table class="table">
-    <tr>
-      <td><%= q.label :titulo %></td>
-      <td>
-      <%= q.text_field :titulo, label: 'titulo', placeholder: 'Ingrese el titulo' , :required => true , size: 50, :uniqueness => true %>
-      </td>
-    </tr>
+		<tr>
+			<td>
+				<%= q.label :título %>
+			</td>
+			<td>
+				<%= q.text_field :titulo, label: 'titulo', placeholder: 'Ingrese el título' , :required => true , size: 50, :uniqueness => true %>
+			</td>
+		</tr>
 
-    <tr>
-      <td><%= q.label :descripcion %></td>
-      <td>
-      <%= q.text_area :descripcion, class: 'form-control', label: 'descripcion', placeholder: 'Ingrese la descripción' , :required => true %>
-        </td>
-</tr> 
-<tr>
-      <td colspan="2" align="center" >
-  		  <%= q.submit "Publicar", class: 'btn btn-danger' %>
-      </td>
-    </tr>
-  </table>
+		<tr>
+			<td>
+				<%= q.label :descripción %>
+			</td>
+			<td>
+				<%= q.text_area :descripcion, class: 'form-control', label: 'descripcion', placeholder: 'Ingrese la descripción' , :required => true %>
+			</td>
+		</tr> 
+		
+		<tr>
+			<td>
+				<%= q.label :categorías%>
+				(5 máximo)
+			</td>
+			<td>
+				<%= collection_check_boxes(:question, :category_ids, Category.permitted, :id, :name)%>
+			</td>		
+		</tr>
+	
+
+	
+		<tr>
+			<td colspan="2" align="center" >
+				<%= q.submit "Publicar", class: 'btn btn-primay' %>
+			</td>
+		</tr>
+	</table>
 <% end %>

@@ -3,17 +3,21 @@
 <h1>Preguntas</h1>
 <h1>Listado de preguntas</h1>
 
-<table>
+<table class ="table">
   <tr>
-    <th>Title</th>
-    <th>Text</th>
+	<th>Titulo de pregunta</th>
+    <th>Descripcion</th>
+
+    <th>Autor</th>
+    <th>Mostrar</th>
   </tr>
 
   <% @questions.each do |q| %>
     <tr>
       <td><%= q.titulo %></td>
-      <td><%= q.descripcion %></td>
-      <td><%= link_to 'Show', :action => :show, :id => q.id %></td>
+      <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
+	  <td> <%= q.user.email %> </td>
+      <td style = "padding-left: 10px "><%= link_to 'Ver', :action => :show, :id => q.id %></td>
     </tr>
   <% end %>
 </table>

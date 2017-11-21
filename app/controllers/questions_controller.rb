@@ -15,7 +15,12 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
+	if current_user
+      @question = Question.new   
+    else 
+      flash[:danger] = "No cuenta con los permisos para publicar. REGISTRESE."
+      redirect_to "/"
+    end
   end
 
   # GET /questions/1/edit
@@ -26,23 +31,30 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
 # Se debe preguntar si el usuario cuenta con permisos para realizar crear una pregunta.
-    	@question = Question.new
+    	@question = Question.new(question_params)
     	@question.titulo = params[:question][:titulo]
     	@question.descripcion = params[:question][:descripcion]
-    	@question.user_id = 2  #deberia ser current_user o algo asi.
-		gen=Category.find_by(name: "General")
-		@question.categories = [gen]
-    	#@question.estado = 'a' debe indicarse el id del user.
+    	@question.user_id = current_user.id 
+    	if @question.category_ids.size > 5
+			flash[:danger] = "Elija 5 categorías como máximo."
+			redirect_to "/questions/new"
+		else
+			if @question.category_ids.size == 0
+				gen=Category.find_by(name:"General")
+				@question.categories = [gen]
+			end
+			if @question.save
+				flash[:success] = "La pregunta ha sido publicada con exito."
+				redirect_to @question
+			else 
+				flash[:danger] = "Error al crear la pregunta...."
+				redirect_to "/"
+			end
+		end
+			
       #current_user.save  
-      @question.save
-      redirect_to @question
-    #if @question.save
-     #   flash[:success] = "La pregunta ha sido publicada con exito."
-      #  redirect_to @question
-      #else 
-       # flash[:danger] = "Error al crear la pregunta...."
-       # redirect_to index
-     # end
+
+
   end
 
   # PATCH/PUT /questions/1
@@ -77,6 +89,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.fetch(:question, {})
+		params.require(:question).permit(:titulo, :descripcion, {category_ids: []})
+		#params.fetch(:question, {})
     end
 end

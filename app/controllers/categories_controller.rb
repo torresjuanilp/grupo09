@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
 			redirect_to categories_path
 		end
 	else
-		flash[:error] = "Sólo los usuarios registrados pueder realizar esta acción."
+		flash[:danger] = "Sólo los usuarios registrados pueder realizar esta acción."
 		redirect_to categories_path
 	end
 		
@@ -53,7 +53,7 @@ class CategoriesController < ApplicationController
 			redirect_to categories_path
 		end
 	else
-		flash[:error] = "Sólo los usuarios registrados pueder realizar esta acción."
+		flash[:danger] = "Sólo los usuarios registrados pueder realizar esta acción."
 		redirect_to categories_path
 	end
 	end

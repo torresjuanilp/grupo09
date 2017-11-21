@@ -1,25 +1,31 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Educanding</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <head>
+    <title>Proyecto</title>
     <%= csrf_meta_tags %>
-</head>
-<body>
 
-<% flash.each do |key, value| %>
-<div class="alert alert-<%= key %> alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <%= value %>
-</div>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+     <% end %>
+
+	<!--- <p class="notice"><%= notice %></p> <p class="alert"><%= alert %></p> --->
+	
+    <% if user_signed_in? %>
+  	<li>
+  		<%= link_to('Cerrar sesión', destroy_user_session_path, method: :delete) %>        
+  	</li>
+	<% else %>
+  	<li>
+     <%= link_to "Registrarse", new_user_registration_path %>
+     <%= link_to "Iniciar sesión", new_user_session_path %>
+  	</li>
 <% end %>
-
-<%= link_to 'Login', new_user_session_path %>
-
-<%= yield %>
-
-</body>
+    <%= yield %>
+  </body>
 </html>
-
