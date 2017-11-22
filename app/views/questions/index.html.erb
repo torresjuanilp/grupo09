@@ -12,11 +12,11 @@
     <th>Mostrar</th>
   </tr>
 
-  <% @questions.each do |q| %>
+  <% @questions.order("created_at DESC").each do |q| %>
     <tr>
       <td><%= q.titulo %></td>
       <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
-	  <td> <%= q.user.email %> </td>
+	  <td> <%= q.user.name %> </td>
       <td style = "padding-left: 10px "><%= link_to 'Ver', :action => :show, :id => q.id %></td>
     </tr>
   <% end %>
