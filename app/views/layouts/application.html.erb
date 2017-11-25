@@ -10,11 +10,7 @@
 
   <body>
 
-    <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-     <% end %>
-
-	<!--- <p class="notice"><%= notice %></p> <p class="alert"><%= alert %></p> --->
+<!--- <p class="notice"><%= notice %></p> <p class="alert"><%= alert %></p> --->
 	
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -75,6 +71,13 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<!--- MENSAJES FLASH --->
+<% flash.each do |key, value| %>
+	<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<!--- MENSAJES FLASH --->
+
     <% if user_signed_in? %>
   	<li>
   		<%= link_to('Cerrar sesión', destroy_user_session_path, method: :delete) %>        

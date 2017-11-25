@@ -10,6 +10,7 @@ class AnswersController < ApplicationController
   # GET /answers/1
   # GET /answers/1.json
   def show
+	@answer = Answer.find(params[:id])
   end
 
 

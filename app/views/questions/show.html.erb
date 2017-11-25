@@ -87,11 +87,11 @@
               <%= form_tag ("/comments/delete") do %>
                 <%= hidden_field_tag(:comment_id, comment.id) %>
               <%= submit_tag("Eliminar", class: 'btn btn-danger', style:"margin-top: 20px;", :onclick => "return confirmar('Desea eliminar el mensaje');") %>
-           <% end %>
+          
           </div>
           </div>
       
-           
+           <% end %>
        <% end %>
        
     
@@ -116,29 +116,67 @@
   </div>
   </div>
    <% @question.answers.each do |ans| %>
-  <div class ="row">
-    <div class="col-md-12" >
-      <div class = "col-md-3">
-          
-          <h5> creador : <%= ans.user.name  %> </h5>
-          <hs>fecha : <%= ans.created_at %> </h5>
-        </div>
-        <div class="col-md-7">
-          <h5> <%= ans.texto %> </h5>
+ 	<div class ="row">
+    		<div class="col-md-12" >
+			<div class = "col-md-3">
+				<h5> creador : <%= ans.user.name  %> </h5>
+				<hs>fecha : <%= ans.created_at %> </h5>
+			</div>
+			<div class="col-md-7">
+				<h5> <%= ans.texto %> </h5>
+			</div>
+
+
+
+
+
+			<div class = "col-md-10">
+				<% ans.comments.each do |comment| %>
+        				<div class="col-md-8" style="background-color: #ccc; margin-top: 5px; border-radius: 5px;">
+          				<div class="row">
+          				<div class="col-md-10">
+					<h5> <%= comment.texto %> </h5>
+         				<h5> creador : <%= comment.user.name  %> 
+          				fecha : <%= comment.created_at %> </h5>
+          				</div>
+          				<div class="col-md-2">
+           <!-- ver si soy propietario primero -->
+		   			<% if comment.user == current_user %>
+              					<%= form_tag ("/comments/delete") do %>
+               					<%= hidden_field_tag(:comment_id, comment.id) %>
+              					<%= submit_tag("Eliminar", class: 'btn btn-danger', style:"margin-top: 20px;", :onclick => "return confirmar('Desea eliminar el mensaje');") %>
+           					<% end %>
+          		</div>
           </div>
+</div>
+      
+           <%end%>
+       <% end %>
+
+
+
+
+			
+			<div class ="col-md-2">
+              			<%= form_tag ("/answers/show") do %>
+                		<%= hidden_field_tag(:id, ans.id) %>
+              			<%= submit_tag("Comentar", class: 'btn btn-primary', style:"margin-top: 20px;") %>
+				<% end %>
+            		</div>
           
-       <% if ans.user == current_user %>
-        <div class ="col-md-2">
-              <%= form_tag ("/answer/delete") do %>
-                <%= hidden_field_tag(:answer_id, ans.id) %>
-              <%= submit_tag("Eliminar", class: 'btn btn-danger', style:"margin-top: 20px;", :onclick => "return confirmar('Desea eliminar el mensaje');") %>
-            </div>
-             
-           <% end %>
-          </div>
-        </div>
-      <%end%>
-      <%end%>
+ 			<% if ans.user == current_user %>
+        			<div class ="col-md-2">
+              				<%= form_tag ("/answers/delete") do %>
+                			<%= hidden_field_tag(:answer_id, ans.id) %>
+              				<%= submit_tag("Eliminar", class: 'btn btn-danger', style:"margin-top: 20px;", :onclick => "return confirmar('Desea eliminar el mensaje');") %>
+            			</div>             
+           		<% end %>
+			
+				
+		</div>
+	</div>
+   <%end%>
+<%end%>
 <% else %> 
 <h2> No hay Respuestas aún </h2>
 
