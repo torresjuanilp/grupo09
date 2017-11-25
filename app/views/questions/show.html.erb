@@ -109,13 +109,13 @@
 
 
 <div class="row">
-  <div class ="col-md-12" style = "background-color: white; margin-left:10px;">
-<% if @question.answers.count > 0 %>
+	<div class ="col-md-12" style = "background-color: white; margin-left:10px;">
+		<% if @question.answers.count > 0 %>
 
-  <h2>Respuestas </h2>
-  </div>
-  </div>
-   <% @question.answers.each do |ans| %>
+  			<h2>Respuestas </h2>
+  	</div>
+</div>
+<% @question.answers.each do |ans| %> </br>
  	<div class ="row">
     		<div class="col-md-12" >
 			<div class = "col-md-3">
@@ -133,30 +133,31 @@
 			<div class = "col-md-10">
 				<% ans.comments.each do |comment| %>
         				<div class="col-md-8" style="background-color: #ccc; margin-top: 5px; border-radius: 5px;">
-          				<div class="row">
-          				<div class="col-md-10">
-					<h5> <%= comment.texto %> </h5>
-         				<h5> creador : <%= comment.user.name  %> 
-          				fecha : <%= comment.created_at %> </h5>
-          				</div>
-          				<div class="col-md-2">
+          					<div class="row">
+          						<div class="col-md-10">
+								<h5> <%= comment.texto %> </h5>
+         							<h5> creador : <%= comment.user.name  %> 
+          							fecha : <%= comment.created_at %> </h5>
+          						</div>
+          						<div class="col-md-2">
            <!-- ver si soy propietario primero -->
-		   			<% if comment.user == current_user %>
-              					<%= form_tag ("/comments/delete") do %>
-               					<%= hidden_field_tag(:comment_id, comment.id) %>
-              					<%= submit_tag("Eliminar", class: 'btn btn-danger', style:"margin-top: 20px;", :onclick => "return confirmar('Desea eliminar el mensaje');") %>
-           					<% end %>
-          		</div>
-          </div>
-</div>
+		   						<% if comment.user == current_user %>
+              								<%= form_tag ("/comments/delete") do %>
+               								<%= hidden_field_tag(:comment_id, comment.id) %>
+              								<%= submit_tag("Eliminar", class: 'btn btn-danger', style:"margin-top: 20px;", :onclick => "return confirmar('Desea eliminar el mensaje');") %>
+           							<% end %>
+          						</div>
+          					</div>
+					</div>
       
-           <%end%>
-       <% end %>
+				<%end%>
+			</div>
+<% end %>
 
 
 
 
-			
+		
 			<div class ="col-md-2">
               			<%= form_tag ("/answers/show") do %>
                 		<%= hidden_field_tag(:id, ans.id) %>
