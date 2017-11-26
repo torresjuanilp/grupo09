@@ -119,7 +119,7 @@
  	<div class ="row">
     		<div class="col-md-12" >
 			<div class = "col-md-3">
-				<h5> creador : <%= ans.user.name  %> </h5>
+				<h5> creador : <%= link_to(ans.user.name, user_path(ans.user)) if user = ans.user %> </h5>
 				<hs>fecha : <%= ans.created_at %> </h5>
 			</div>
 			<div class="col-md-7">
@@ -136,7 +136,7 @@
           					<div class="row">
           						<div class="col-md-10">
 								<h5> <%= comment.texto %> </h5>
-         							<h5> creador : <%= comment.user.name  %> 
+         							<h5> creador : <%= link_to(comment.user.name, user_path(comment.user)) if user = comment.user %>
           							fecha : <%= comment.created_at %> </h5>
           						</div>
           						<div class="col-md-2">
