@@ -16,7 +16,7 @@
     <tr>
       <td><%= q.titulo %></td>
       <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
-	  <td> <%= q.user.name %> </td>
+	  <td> <%= link_to(q.user.name, user_path(q.user)) if user = q.user %> </td>
       <td style = "padding-left: 10px "><%= link_to 'Ver', :action => :show, :id => q.id %></td>
     </tr>
   <% end %>
