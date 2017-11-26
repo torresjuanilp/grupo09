@@ -56,6 +56,7 @@
           <ul class="dropdown-menu">
           <% if user_signed_in? %>
             <li><a href="#"><%= link_to('Cerrar sesión', destroy_user_session_path, method: :delete) %>  </a></li>
+            <li><a href="#"><%= link_to('Modificar datos',  edit_user_registration_path) %>  </a></li>
             <% else %>
             <li><a href="#"><li>
                 <%= link_to "Registrarse", new_user_registration_path %>
@@ -80,7 +81,8 @@
 
     <% if user_signed_in? %>
   	<li>
-  		<%= link_to('Cerrar sesión', destroy_user_session_path, method: :delete) %>        
+  		<%= link_to('Cerrar sesión', destroy_user_session_path, method: :delete) %>
+      <%= link_to 'Modificar datos', edit_user_registration_path %>        
   	</li>
 	<% else %>
   	<li>
