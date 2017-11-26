@@ -5,6 +5,6 @@ class Category < ApplicationRecord
 	validates :name, :presence => true,
                      :length => { :minimum => 1 } 
 	
-	gen=Category.find_by(name:"General")
-	scope :permitted, -> { where.not ('name == "General"') }
+	
+	scope :permitted, -> { Category.where.not(name: 'General') }
 end

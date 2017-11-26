@@ -17,10 +17,16 @@ class CommentsController < ApplicationController
     comment = Comment.new
     comment.texto = params[:cuerpo]
     comment.question_id = params[:question_id]
+	comment.answer_id = params[:answer_id]
+    
     comment.user_id = current_user.id
-    if comment.save
+    if comment.save(validate: false)
       flash[:success] = "Se envio el mensaje correctamente."
-        redirect_to comment.question
+	if comment.question == nil
+		redirect_to comment.answer.question
+	else
+		redirect_to comment.question
+	end
     else 
       flash[:danger] = "Hubo algun problema al enviar el mensaje."
         redirect_to "/"

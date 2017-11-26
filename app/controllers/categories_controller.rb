@@ -24,8 +24,13 @@ class CategoriesController < ApplicationController
 			flash[:success] = "La categoría se ha creado con exito."
 			redirect_to categories_path
 		else 
-			flash[:danger] = "Error al crear la categoría."
-			redirect_to categories_path
+			if Category.exists?(name: @category.name)
+				flash[:danger] = "La categoría especificada ya existe."
+				redirect_to categories_path
+			else
+				flash[:danger] = "Error al crear la categoría."
+				redirect_to categories_path
+			end
 		end
 	else
 		flash[:danger] = "Sólo los usuarios registrados pueder realizar esta acción."

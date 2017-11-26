@@ -19,5 +19,6 @@ post 'comments/delete' => 'comments#delete'
 get 'answers/index' 
  post 'answers/new' => 'answers#new'
  post 'answers/delete' => 'answers#delete'
+	post 'answers/show' => 'answers#show'
 
 end
