@@ -5,8 +5,8 @@
 		<div class="alert alert-warning" role="alert" style="margin: 20px;">
 			<h4> Datos del autor </h4>
 
-			<h5>Nombre: <%= @question.user.name%> </h5>
-			<h5> <%= @question.user.apellido%></h5>
+			<h5>Nombre: <%=  link_to(@question.user.name, user_path(@question.user)) if user = @question.user %> </h5>
+			<h5> <%= link_to(@question.user.apellido, user_path(@question.user)) if user = @question.user %></h5>
 
 		</div>
 	</div>
@@ -78,7 +78,7 @@
 		<div class="row">
 			<div class="col-md-10">
 				<h5> <%= comment.texto %> </h5>
-				<h5> creador : <%= comment.user.name  %> 
+				<h5> creador : <%= link_to(@question.user.name, user_path(@question.user)) if user = @question.user %>
 					fecha : <%= comment.created_at %> </h5>
 				</div>
 				<div class="col-md-2">
@@ -130,7 +130,7 @@
 			<% end %>
 			<div class="panel-body">
 			<div class = "col-md-3">
-				<h5> creador : <%= ans.user.name  %> </h5>
+				<h5> creador : <%= link_to(ans.user.name, user_path(ans.user)) if user = ans.user %> </h5>
 				<% d=ans.created_at %>
 				<h5>fecha : <%= d.strftime("%d/%m/%Y %H:%M") %> </h5>
 			</div>
@@ -180,7 +180,7 @@
 				<div class="row">
 					<div class="col-md-10">
 						<h5> <%= comment.texto %> </h5>
-						<h5> creador : <%= comment.user.name  %> 
+						<h5> creador :<%= link_to(comment.user.name, user_path(comment.user)) if user = comment.user %> 
 							fecha : <%= comment.created_at %> </h5>
 						</div>
 						<div class="col-md-2">
