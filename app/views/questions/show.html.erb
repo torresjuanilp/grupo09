@@ -157,7 +157,8 @@
 			<% end %>
 
 			<%end%>
-			<%if (@question.user_id == current_user.id) %>
+
+			<%if ( current_user and @question.user_id == current_user.id) %>
 			<div class ="col-md-2">
 				<%= form_tag ("/answers/elegirmejor") do %>
 				<%= hidden_field_tag(:answer_id, ans.id) %>
@@ -181,7 +182,9 @@
 					<div class="col-md-10">
 						<h5> <%= comment.texto %> </h5>
 						<h5> creador :<%= link_to(comment.user.name, user_path(comment.user)) if user = comment.user %> 
-							fecha : <%= comment.created_at %> </h5>
+							<% d=comment.created_at.in_time_zone(current_user.timezone) %>
+						fecha : <%= d.strftime("%d/%m/%Y %H:%M") %> </h5>
+							
 						</div>
 						<div class="col-md-2">
 							<!-- ver si soy propietario primero -->
