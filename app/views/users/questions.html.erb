@@ -1,0 +1,31 @@
+<h3> ¡Hola <%= @user.name %>! </h3>
+
+<h1>Listado de preguntas</h1>
+
+<table class ="table">
+	<tr>
+		<th>Titulo de pregunta</th>
+		<th>Descripcion</th>
+
+		<th>Respuestas</th>
+		<th>Mostrar</th>
+	</tr>
+
+	<% Question.all.each  do |q| %>
+		<tr>
+			<% if q.user_id == @user.id %>
+				
+				<td><%= q.titulo %></td>
+				<td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
+				<% if q.answers.last.created_at > @user.last_seen_at_before %>
+					<td> <%= q.answers.count %> (¡Nueva respuesta!) </td>
+				<% else %>
+					<td> <%= q.answers.count %> </td>	
+				<% end %>
+				<td style = "padding-left: 10px "> <%= link_to 'Ver', question_path(q.id) %> </td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
+
+

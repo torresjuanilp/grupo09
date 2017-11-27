@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :questions
   resources :categories
   devise_for :users
+	get '/users/questions' => 'users#questions'
   resources :users
 get "questions/:id" => "questions#show"
 get "questions" => "questions#index"
@@ -21,5 +22,8 @@ get 'answers/index'
  post 'answers/delete' => 'answers#delete'
  post 'answers/elegirmejor' => 'answers#elegirmejor'
 	post 'answers/show' => 'answers#show'
+
+get '/users/show' => 'users#show'
+
 
 end

@@ -10,7 +10,4 @@
 	gen=Category.find_or_create_by(name: "General")
 	rails=Category.find_or_create_by(name: "Rails")
 	ruby=Category.find_or_create_by(name: "Ruby")
-	Question.find_or_create_by(titulo: "¿Cómo funciona Rails?", descripcion: "¡Ayuda!", user_id: 0, categories:  [ruby, rails])
-	Question.find_or_create_by(titulo: "Ruby es un dolor de cabeza", descripcion: "D:", user_id: 0, categories:  [ruby, rails])
-	Question.find_or_create_by(titulo: "Test!", descripcion: "Test?", user_id: 1, categories:  [rails])
-	Question.find_or_create_by(titulo: "Eliminame!", descripcion: ":D", user_id: 1, categories: [rails, ruby])
+	info=Category.find_or_create_by(name: "Informática")

@@ -16,8 +16,5 @@ class Question < ActiveRecord::Base
 	validates :categories, :length => { :maximum => 5}
 					
 	
-	#def categories_count_within_bounds
-	#	return if categories.size <= 1
-	#	self.errors.add(:base, '¡Demasiadas categorías!') if categories.size > 5
-	#end
+	default_scope -> { order("created_at desc") }
 end
