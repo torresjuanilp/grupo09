@@ -72,12 +72,14 @@ end
   end
 end
 def elegirmejor
-if Question.find(params[:question_id]).user == current_user
+if Question.find(params[:question_id]).user == current_user 
   answer = Answer.find(params[:answer_id])
   answer.mejor_resp = true
   q=Question.find(params[:question_id])
   q.tiene_mejor_resp = true
-   if answer.save and q.save
+  usuario = answer.user
+  usuario.puntaje += 50
+   if answer.save and q.save and usuario.save
      flash[:success] = "Se elegió la mejor respuesta."
       redirect_to answer.question
       end

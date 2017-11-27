@@ -79,7 +79,9 @@
 			<div class="col-md-10">
 				<h5> <%= comment.texto %> </h5>
 				<h5> creador : <%= link_to(@question.user.name, user_path(@question.user)) if user = @question.user %>
-					fecha : <%= comment.created_at %> </h5>
+
+					<% d=comment.created_at %>
+			 		fecha : <%= d.strftime("%d/%m/%Y %H:%M") %> </h5>
 				</div>
 				<div class="col-md-2">
 					<!-- ver si soy propietario primero -->
@@ -182,7 +184,7 @@
 					<div class="col-md-10">
 						<h5> <%= comment.texto %> </h5>
 						<h5> creador :<%= link_to(comment.user.name, user_path(comment.user)) if user = comment.user %> 
-							<% d=comment.created_at.in_time_zone(current_user.timezone) %>
+							<% d=comment.created_at %>
 						fecha : <%= d.strftime("%d/%m/%Y %H:%M") %> </h5>
 							
 						</div>
