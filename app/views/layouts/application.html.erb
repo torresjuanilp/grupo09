@@ -33,7 +33,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
+            <li><a href="/users/mispermisos">Mis permisos </a></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
@@ -52,15 +52,19 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Link</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mis opciones <span class="caret"></span></a>
           <ul class="dropdown-menu">
           <% if user_signed_in? %>
             <li><a href="#"><%= link_to('Cerrar sesión', destroy_user_session_path, method: :delete) %>  </a></li>
-            <li><a href="#"><%= link_to('Modificar datos',  edit_user_registration_path) %>  </a></li>
+            <li><a href="#"><%= link_to('Modificar datos',  edit_user_registration_path) %>  </a>
+              <%= link_to "Mis Permisos", controller: "users", action: "mispermisos" %>
+            </li>
+
             <% else %>
             <li><a href="#"><li>
                 <%= link_to "Registrarse", new_user_registration_path %>
                 <%= link_to "Iniciar sesión", new_user_session_path %>
+
             </li></a></li>
           <% end %>
             <li><a href="#">Something else here</a></li>
@@ -82,7 +86,9 @@
     <% if user_signed_in? %>
   	<li>
   		<%= link_to('Cerrar sesión', destroy_user_session_path, method: :delete) %>
-      <%= link_to 'Modificar datos', edit_user_registration_path %>        
+      <%= link_to 'Modificar datos', edit_user_registration_path %>
+              
+
   	</li>
 	<% else %>
   	<li>

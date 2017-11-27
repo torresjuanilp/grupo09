@@ -1,0 +1,55 @@
+
+
+
+<h2> Mis permisos </h2>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4> Usted posee los siguientes permisos: </h4></div>
+			<div class="panel-body">
+			<% if @user.puntaje >= 1 %>
+				<h6> Crear pregunta </h6>
+				<% if @user.puntaje  >= 15 %>
+					<h6> Votar positivo en pregunta, respuesta o comentario </h6>
+					<% if @user.puntaje  >= 20 %>
+						<h6> Comentar </h6>
+						<% if @user.puntaje  >= 100 %>
+							<h6> Vortar negativo </h6>
+							<% if @user.puntaje  >= 300 %>
+								<h6> Administrar etiquetas. </h6>
+									<% if @user.puntaje  >= 500 %>
+										<h6> Administrar facultades. </h6>
+										<% if @user.puntaje  >= 1000 %>
+											<h6> Modificar contenidos. </h6>
+										<% end %>
+									<% end %>
+							<% end %>			
+					    <% end %>
+					<% end %>
+				<% end %>	
+			<% end %>
+			</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+<h4> Le faltan obtener los siguientes permisos: </h4></div>
+<div class="panel-body">
+<% if @user.puntaje  < 15 %>
+		<h6> Votar positivo en pregunta, respuesta o comentario </h6>
+		<% if @user.puntaje  < 20 %>
+			<h6> Comentar </h6>
+			<% if @user.puntaje  < 100 %>
+				<h6> Vortar negativo </h6>
+				<% if @user.puntaje  < 300 %>
+					<h6> Administrar etiquetas. </h6>
+						<% if @user.puntaje  < 500 %>
+							<h6> Administrar facultades. </h6>
+							<% if @user.puntaje  < 1000 %>
+								<h6> Modificar contenidos. </h6>
+							<% end %>
+						<% end %>
+				<% end %>			
+		    <% end %>
+		<% end %>
+	<% end %>	
+			</div>
+</div>

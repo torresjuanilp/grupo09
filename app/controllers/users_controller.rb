@@ -12,7 +12,10 @@ class UsersController < ApplicationController
 		@user.save
 	end
 
+	def mispermisos
+		@user = User.find(current_user.id)
 
+	end
 
 
 end
