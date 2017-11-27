@@ -71,7 +71,21 @@ end
     redirect_to "/questions"
   end
 end
-
+def elegirmejor
+if Question.find(params[:question_id]).user == current_user
+  answer = Answer.find(params[:answer_id])
+  answer.mejor_resp = true
+  q=Question.find(params[:question_id])
+  q.tiene_mejor_resp = true
+   if answer.save and q.save
+     flash[:success] = "Se elegió la mejor respuesta."
+      redirect_to answer.question
+      end
+else
+  flash[:error] = "No posee los permisos necesarios para elegir la mejor respuesta"
+  redirect_to "/questions"
+end
+end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
