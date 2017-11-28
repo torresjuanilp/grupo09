@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   devise_for :users
 	get '/users/questions' => 'users#questions'
     get '/users/mispermisos' => 'users#mispermisos'
+    
   resources :users
 get "questions/:id" => "questions#show"
 get "questions" => "questions#index"
