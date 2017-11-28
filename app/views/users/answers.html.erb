@@ -1,13 +1,14 @@
 <h3> ¡Hola <%= @user.name %>! </h3>
 
-<h2>Listado de tus ultimas respuestas</h2>
+<h2>Listado de tus ultimas respuestas </h2>
 
 <table class ="table">
 	<tr>
 		<th>Titulo de pregunta</th>
 		<th>Descripcion</th>
-
 		<th>Tu respuesta</th>
+		<th>Respuestas nuevas </th>
+
 		<th>Mostrar</th>
 	</tr>
 
@@ -15,8 +16,14 @@
 		<tr>
 				
 			<td><%= a.question.titulo %></td>
-			<td style= "width: 200px; height: 20px; overflow: hidden;"><%= a.question.descripcion %></td>		
-			<td> <%= a.texto  %> </td>
+			<td><%= a.question.descripcion %></td>		
+			<td> <%= a.texto %> </td>
+			<td> <% if (a.question.answers.last.created_at > @user.last_seen_at_before) %>
+				 Hay respuestas nuevas!
+				 <%else %>
+				 No hay respuestas nuevas!
+				 <% end %>
+				</td>
 			
 			<td style = "padding-left: 10px "> <%= link_to 'Ver', question_path(a.question.id) %> </td>
 		</tr>
