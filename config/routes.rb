@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'permits/create'
+
+  get 'permits/show'
+
+  get 'permits/index'
+
   resources :questions
   resources :categories
   devise_for :users
