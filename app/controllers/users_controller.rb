@@ -14,6 +14,15 @@ before_action :assign_permits
 	end
 	end
 
+	def answers
+	if user_signed_in?
+		@user = User.find(current_user.id)
+		@user.last_seen_at_before = @user.last_seen_at
+		@user.last_seen_at = Time.current
+		@user.save
+	end
+	end
+
 	def mispermisos
 	if user_signed_in?
 		@user = User.find(current_user.id)

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 	has_many :questions
+	has_many :answers
 	accepts_nested_attributes_for :questions
 	has_many :permits
 end

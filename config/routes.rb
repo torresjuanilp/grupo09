@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   resources :categories
   devise_for :users
 	get '/users/questions' => 'users#questions'
+  get '/users/answers' => 'users#answers'
     get '/users/mispermisos' => 'users#mispermisos'
-    
+
   resources :users
 get "questions/:id" => "questions#show"
 get "questions" => "questions#index"
