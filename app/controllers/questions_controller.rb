@@ -24,7 +24,22 @@ class QuestionsController < ApplicationController
 
     end
   end
+  def voteposi
+    if current_user 
+      if current_user.id =! @question.id
+        user=@question.user
+        user.puntaje+=1
 
+        if user.save
+          flash[:success] = "se voto correctamente"
+         redirect_to @question
+       else 
+        flash[:danger] = "no se voto correctamente"
+        redirect_to @question
+      end
+      end
+    end
+  end
   # GET /questions/1/edit
   def edit
   end

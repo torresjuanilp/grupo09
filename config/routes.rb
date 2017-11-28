@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users
 get "questions/:id" => "questions#show"
 get "questions" => "questions#index"
+get "questions/voteposi" => "questions#voteposi" 
 get "categories" => "categories#index"
 get "categories/new" => "categories#new"
 get "categories/show0" => "categories#show"
@@ -25,6 +26,7 @@ get 'answers/index'
 	post 'answers/show' => 'answers#show'
 
   get '/users/show' => 'users#show'
+
 
 
 end

@@ -32,8 +32,12 @@
 			<% else %> 
 
 				<% if current_user != @question.user %>
-						<div class="col-md-2">
-							<h1> hola </h1>
+						<div class="col-md-1">
+						
+								
+  						<%= link_to questions_path(@user), class: "btn btn-default -btn-sm" do   %>
+								<i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i>
+						<% end %>
 						</div>
 						<% end %>
 			<% end %>
