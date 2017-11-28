@@ -5,3 +5,64 @@
   <%= link_to 'Categorías', '/categories' %>	</br>
 </br>
 	<%= link_to 'Permisos', '/permits/index' %>
+<!DOCTYPE html>
+<html>
+  <h1>Bienvenidos a Educading.</h1> </br>
+  <%= link_to 'Preguntas', '/questions' %>	</br>
+  <%= link_to 'Categorías', '/categories' %>	</br>
+
+<p id="notice"><%= notice %></p>
+   <% if user_signed_in?  %>
+<h1>Preguntas</h1>
+<h1>Listado de preguntas de la misma facultad</h1>
+
+<table class ="table">
+  <tr>
+	<th>Titulo de pregunta</th>
+    <th>Descripcion</th>
+
+    <th>Autor</th>
+    <th>Mostrar</th>
+  </tr>
+
+  <% Question.all.each do |q| %>
+   <% if user_signed_in?  %>
+  <% if current_user.facultad == q.user.facultad %>
+    <tr>
+      <td><%= q.titulo %></td>
+      <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
+	  <td> <%= link_to(q.user.name, user_path(q.user)) if user = q.user %> </td>
+      <td style = "padding-left: 10px "><%= link_to 'Ver', :controller => "questions", :action => :show, :id => q.id %></td>
+    </tr>
+  	<% end %>
+   <% end %>
+  <% end %>
+  </table>
+<br>
+  <% else%>
+  <h1>Preguntas</h1>
+<h1>Listado de preguntas</h1>
+
+<table class ="table">
+  <tr>
+	<th>Titulo de pregunta</th>
+    <th>Descripcion</th>
+
+    <th>Autor</th>
+    <th>Mostrar</th>
+  </tr>
+
+  <% Question.all.each do |q| %>
+    <tr>
+      <td><%= q.titulo %></td>
+      <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
+	  <td> <%= link_to(q.user.name, user_path(q.user)) if user = q.user %> </td>
+      <td style = "padding-left: 10px "><%= link_to 'Ver', :controller => "questions", :action => :show, :id => q.id %></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br>
+
+<%= link_to 'Nueva pregunta', new_question_path %>
