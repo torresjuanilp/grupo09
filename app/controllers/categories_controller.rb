@@ -13,7 +13,12 @@ class CategoriesController < ApplicationController
 	end
 	
 	def new
-		@category = Category.new
+		if current_user.permits.find_by(name: "Administrar categorias") == nil
+			flash[:danger] = "No tiene los permisos necesarios para crear una categoría."
+			redirect_to categories_path
+		else
+			@category = Category.new
+		end
 	end
 	
 	def create
@@ -32,6 +37,7 @@ class CategoriesController < ApplicationController
 				redirect_to categories_path
 			end
 		end
+	
 	else
 		flash[:danger] = "Sólo los usuarios registrados pueder realizar esta acción."
 		redirect_to categories_path
@@ -42,24 +48,29 @@ class CategoriesController < ApplicationController
 	def destroy
 		
 	if user_signed_in?
-		@category = Category.find(params[:id])
-		@category.questions.all.each do |q|
-			if q.categories.size <= 1
-				gen=Category.find_by(name: "General")
-				q.categories = [gen]
-				q.save
+		if current_user.permits.find_by(name: "Administrar categorias") == nil
+			flash[:danger] = "No tiene los permisos necesarios para eliminar una categoría."
+			redirect_to categories_path
+		else
+			@category = Category.find(params[:id])
+			@category.questions.all.each do |q|
+				if q.categories.size <= 1
+					gen=Category.find_by(name: "General")
+					q.categories = [gen]
+					q.save
+				end
+			end
+			if @category.destroy
+				flash[:success] = "La categoría ha sido eliminada con exito."
+				redirect_to categories_path
+			else 
+				flash[:danger] = "Error al eliminar la categoría."
+				redirect_to categories_path
 			end
 		end
-		if @category.destroy
-			flash[:success] = "La categoría ha sido eliminada con exito."
-			redirect_to categories_path
-		else 
-			flash[:danger] = "Error al eliminar la categoría."
-			redirect_to categories_path
-		end
 	else
-		flash[:danger] = "Sólo los usuarios registrados pueder realizar esta acción."
-		redirect_to categories_path
+			flash[:danger] = "Sólo los usuarios registrados pueder realizar esta acción."
+			redirect_to categories_path
 	end
 	end
 end

@@ -17,9 +17,6 @@ before_action :assign_permits
 	def answers
 	if user_signed_in?
 		@user = User.find(current_user.id)
-		@user.last_seen_at_before = @user.last_seen_at
-		@user.last_seen_at = Time.current
-		@user.save
 	end
 	end
 
