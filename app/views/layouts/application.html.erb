@@ -31,7 +31,7 @@
         <li class="active"><a href="/">Inicio <span class="sr-only">(current)</span></a></li>
         <li><a href="/questions">Preguntas</a></li>
 <% if user_signed_in? %>
-	<li><a href="/users/show">Perfil</a></li>
+	<li><a href="/users/<%=current_user.id%>">Perfil</a></li>
 	<% if current_user.questions.count > 0 %>
 		<li><a href="/users/questions">Lista de preguntas</a></li>
 	<% end %>

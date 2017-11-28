@@ -2,12 +2,7 @@ class UsersController < ApplicationController
 before_action :assign_permits
 
 	def show
-	if user_signed_in?
-		#@user = User.find(params[ :id])
-		@user = User.find(current_user.id)
-	else
 		@user = User.find(params[ :id])
-	end
 	end
 
 	def questions
