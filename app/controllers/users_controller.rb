@@ -2,23 +2,31 @@ class UsersController < ApplicationController
 before_action :assign_permits
 
 	def show
+	if user_signed_in?
 		#@user = User.find(params[ :id])
 		@user = User.find(current_user.id)
+	else
+		@user = User.find(params[ :id])
+	end
 	end
 
 	def questions
+	if user_signed_in?
 		@user = User.find(current_user.id)
 		@user.last_seen_at_before = @user.last_seen_at
 		@user.last_seen_at = Time.current
 		@user.save
 	end
+	end
 
 	def mispermisos
+	if user_signed_in?
 		@user = User.find(current_user.id)
-
+	end
 	end
 
 	def assign_permits
+	if user_signed_in?
 		@user = User.find(current_user.id)
 		Permit.all.each do |p|
 			if @user.puntaje >= p.score
@@ -27,5 +35,6 @@ before_action :assign_permits
 				end
 			end
 		end
+	end
 	end
 end
