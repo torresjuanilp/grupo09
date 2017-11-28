@@ -1,6 +1,11 @@
 <h3> ¡Hola <%= @user.name %>! </h3>
 
-<h2>Listado de tus ultimas respuestas </h2>
+
+
+<% if @user.answers.count > 0 %>
+
+<h2>Listado de tus ultimas respuestas</h2>
+
 
 <table class ="table">
 	<tr>
@@ -29,3 +34,9 @@
 		</tr>
 	<% end %>
 </table>
+
+<% else %>
+
+<h2>Aún no tienes respuestas</h2>
+
+<% end %>

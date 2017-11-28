@@ -22,19 +22,24 @@ class AnswersController < ApplicationController
 
   # POST /answers.json
   def new
-    answer = Answer.new
-    answer.texto = params[:texto]
-    answer.question_id = params[:question_id]
-    answer.titulo= "Sin titulo"
-    answer.user_id =current_user.id
-  if answer.save
-    flash[:success] = "Se envio el mensaje correctamente."
-        redirect_to answer.question
-    else 
-      flash[:danger] = "Hubo algun problema al enviar el mensaje."
-        redirect_to "/"
-end
-end  
+	if current_user.permits.find_by(name: "Crear pregunta") == nil
+		flash[:danger] = "No tiene los permisos para crear una respuesta."
+		redirect_to "/"
+	else
+    		answer = Answer.new
+    		answer.texto = params[:texto]
+   		answer.question_id = params[:question_id]
+  		answer.titulo= "Sin titulo"
+  		answer.user_id =current_user.id
+ 			if answer.save
+    				flash[:success] = "Se envio el mensaje correctamente."
+        			redirect_to answer.question
+    			else 
+      				flash[:danger] = "Hubo algun problema al enviar el mensaje."
+        			redirect_to "/"
+			end
+	end
+  end  
 
   # PATCH/PUT /answers/1
   # PATCH/PUT /answers/1.json
