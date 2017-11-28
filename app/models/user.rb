@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
 	has_many :questions
 	accepts_nested_attributes_for :questions
+	has_many :permits
 end

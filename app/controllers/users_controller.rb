@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :assign_permits
 
 	def show
 		#@user = User.find(params[ :id])
@@ -17,5 +18,14 @@ class UsersController < ApplicationController
 
 	end
 
-
+	def assign_permits
+		@user = User.find(current_user.id)
+		Permit.all.each do |p|
+			if @user.puntaje >= p.score
+				if @user.permits.find_by(name: p.name) == nil
+					@user.permits << Permit.find_by(name: p.name)
+				end
+			end
+		end
+	end
 end

@@ -1,0 +1,19 @@
+
+<h1>Permisos</h1>
+
+<table class="table">
+  <tr>
+    <th>Permiso</th>
+    <th>Descripción</th>
+    <th>Puntaje necesario</th>
+  </tr>
+
+	<% Permit.all.each do |p| %>
+		<tr>
+		<td> <%= p.name %> </td>
+		<td> <%= p.descripcion %> </td>
+		<td> <%= p.score %> </td>
+		</tr>
+	<% end %>
+	</tr>
+</table>
