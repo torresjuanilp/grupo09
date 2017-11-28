@@ -7,7 +7,6 @@ class Question < ActiveRecord::Base
 	accepts_nested_attributes_for :categories
 	validates_uniqueness_of :titulo
 	
-	#validate :categories_count_within_bounds
 	
 	validates :titulo, :presence => true,
                     :length => { :minimum => 5 }

@@ -11,19 +11,21 @@
 		<th>Mostrar</th>
 	</tr>
 
-	<% Question.all.each  do |q| %>
+	<% @user.questions.all.each  do |q| %>
 		<tr>
-			<% if q.user_id == @user.id %>
 				
-				<td><%= q.titulo %></td>
-				<td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
-				<% if q.answers.last.created_at > @user.last_seen_at_before %>
+			<td><%= q.titulo %></td>
+			<td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>			<% if (q.answers.count > 0) %>
+				<% if (q.answers.last.created_at > @user.last_seen_at_before) %>
 					<td> <%= q.answers.count %> (¡Nueva respuesta!) </td>
 				<% else %>
-					<td> <%= q.answers.count %> </td>	
+					<td> <%= q.answers.count %> </td>
 				<% end %>
-				<td style = "padding-left: 10px "> <%= link_to 'Ver', question_path(q.id) %> </td>
+			<% else %>
+				<td> <%= q.answers.count %> </td>
 			<% end %>
+			
+			<td style = "padding-left: 10px "> <%= link_to 'Ver', question_path(q.id) %> </td>
 		</tr>
 	<% end %>
 </table>

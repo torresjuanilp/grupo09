@@ -78,7 +78,9 @@ if Question.find(params[:question_id]).user == current_user
   q=Question.find(params[:question_id])
   q.tiene_mejor_resp = true
   usuario = answer.user
-  if usuario.id =! q.user.id
+
+  if usuario.id != q.user.id
+
     usuario.puntaje += 50
   end
    if answer.save and q.save and usuario.save
