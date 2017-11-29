@@ -9,7 +9,7 @@
     <th>Editar </th>
   </tr>
 
-	<% Permit.all.each do |p| %>
+	<% Permit.all.order('score ASC').each do |p| %>
 		<tr>
 		<td> <%= p.name %> </td>
 		<td> <%= p.descripcion %> </td>
