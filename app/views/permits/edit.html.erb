@@ -3,14 +3,35 @@
 
 <%= form_for :permit, :url => { :action => :update, :id => @permit.id },
 :method => :put do |f| %>
-  <label>Permiso:</label><br>
-  <%= text_field_tag :name, @permit.name %><br>
-  <label>Descripcion:</label><br>
-  <%= text_field_tag :descripcion, @permit.descripcion %><br>
-  <label>puntaje requerido:</label><br>
-  <%= text_area_tag :puntaje, @permit.score %><br>
+ 
+<% if @permit.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@permit.errors.count, "error") %> prohibited
+      this permit from being saved:</h2>
+    <ul>
+    <% @permit.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
 
-  <%= submit_tag "Submit Post" %>
-  
-<%= link_to 'Back', :action => :index %>
+  <p>
+    <%= f.label :descripcion %><br>
+    <%= f.text_area :descripcion %>
+  </p>
+  <p>
+    <%= f.label :score %><br>
+    <%= f.text_area :score %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
 <% end %>
+  <%= submit_tag "MOdificar" %>
+
+<%= link_to 'Back', :action => :index %>
