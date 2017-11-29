@@ -18,7 +18,8 @@ class Question < ActiveRecord::Base
 	default_scope -> { order("created_at desc") }
 
 def self.search(search)
-  where("titulo LIKE ?", "%#{search}%")
+  #where("titulo LIKE ?", "%#{search}%")
+  where("titulo LIKE ? OR descripcion LIKE ?", "%#{search}%","%#{search}%")
 end
 
 
