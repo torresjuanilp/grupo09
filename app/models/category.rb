@@ -6,5 +6,5 @@ class Category < ApplicationRecord
                      :length => { :minimum => 1 } 
 	
 	
-	scope :permitted, -> { Category.where.not(name: 'General') }
+	scope :permitted, -> { Category.order('name ASC').where.not(name: 'General') }
 end

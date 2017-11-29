@@ -8,7 +8,7 @@
     <th>Ver Preguntas</th>
   </tr>
 
-	<% @categories.each do |c| %>
+	<% @categories.order('name ASC').each do |c| %>
 		<tr>
 		<td> <%= c.name %> </td>
 		<td> <%= link_to 'Ver', :action => :show, :id => c.id %> </td>
