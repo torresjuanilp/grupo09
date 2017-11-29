@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'permits/show'
 
   get 'permits/index'
-
+get "permits/:id/edit" => "permits#edit"
+put "permits/:id" => "permits#update"
   resources :questions
   resources :categories
   devise_for :users

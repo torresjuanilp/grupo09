@@ -1,0 +1,16 @@
+
+
+
+<%= form_for :permit, :url => { :action => :update, :id => @permit.id },
+:method => :put do |f| %>
+  <label>Permiso:</label><br>
+  <%= text_field_tag :name, @permit.name %><br>
+  <label>Descripcion:</label><br>
+  <%= text_field_tag :descripcion, @permit.descripcion %><br>
+  <label>puntaje requerido:</label><br>
+  <%= text_area_tag :puntaje, @permit.score %><br>
+
+  <%= submit_tag "Submit Post" %>
+  
+<%= link_to 'Back', :action => :index %>
+<% end %>

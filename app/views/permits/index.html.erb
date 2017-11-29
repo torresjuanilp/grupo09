@@ -6,6 +6,7 @@
     <th>Permiso</th>
     <th>Descripción</th>
     <th>Puntaje necesario</th>
+    <th>Editar </th>
   </tr>
 
 	<% Permit.all.each do |p| %>
@@ -13,7 +14,11 @@
 		<td> <%= p.name %> </td>
 		<td> <%= p.descripcion %> </td>
 		<td> <%= p.score %> </td>
+		<td>
+		<%= link_to 'Edit', :action => :edit, :id => p.id %> 
+		</td>
 		</tr>
+		
 	<% end %>
 	</tr>
 </table>
