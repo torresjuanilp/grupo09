@@ -29,6 +29,9 @@ before_action :assign_permits
 	def assign_permits
 	if user_signed_in?
 		@user = User.find(current_user.id)
+		per = Permit.find_by(score: 1)
+		@user.permits = [per]
+		@user.save
 		Permit.all.each do |p|
 			if @user.puntaje >= p.score
 				if @user.permits.find_by(name: p.name) == nil
@@ -36,6 +39,7 @@ before_action :assign_permits
 				end
 			end
 		end
+		
 	end
 	end
 end
