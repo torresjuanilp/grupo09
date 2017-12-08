@@ -110,11 +110,14 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   # DELETE /questions/1.json
   def destroy
+    if current_user == @question.user
+    @question.answers.destroy_all
     @question.destroy
-    respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = "La pregunta ha sido eliminada."
+  else
+
+    flash[:danger] = " No se pudo eliminar la pregunta."
+      end
   end
 
   private
