@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'faculties/show' => 'faculties#show'
 
-  get 'faculties/index' => 'faculties#index'
+  get 'faculties' => 'faculties#index'
 
   get 'permits/create'
 
@@ -24,6 +24,7 @@ get "permits/:id/edit" => "permits#edit"
 put "permits/:id" => "permits#update"
   resources :questions
   resources :categories
+  resources :faculties
   devise_for :users
 	get '/users/questions' => 'users#questions'
   get '/users/answers' => 'users#answers'
