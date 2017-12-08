@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :faculties
   get 'faculties/new' => 'faculties#new'
   
   get'faculties/show_users' => 'faculties#show_users'
@@ -24,7 +25,6 @@ get "permits/:id/edit" => "permits#edit"
 put "permits/:id" => "permits#update"
   resources :questions
   resources :categories
-  resources :faculties
   devise_for :users
 	get '/users/questions' => 'users#questions'
   get '/users/answers' => 'users#answers'

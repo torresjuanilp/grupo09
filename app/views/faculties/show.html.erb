@@ -26,16 +26,16 @@
 				<td><%= link_to 'Ver', question_path(q) %></td>
 			</tr>
 	<% end %>
-	
+	<% end %>
 	<tr>
 		<% if (@faculty.name != "Otra") && user_signed_in? %>
 		<td colspan="2" align="center" >
 			</br>
-			<%= button_to "Eliminar Facultad", faculties_destroy_path , method: 'delete', class: 'faculty', :data => {:confirm => '¿Estás seguro?'} %>
+			<%= button_to "Eliminar Facultad", faculty_path , method: 'delete', params: { id: @faculty.id }, class: 'faculty', :data => {:confirm => '¿Estás seguro?'} %>
 		</td>
 		<% end %>
 	</tr>
 </table>
 </br>
-<% end %>
+
 </p>
