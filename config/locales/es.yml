@@ -37,5 +37,8 @@ es:
           attributes:
             email:
               blank: ": ingrese un Email"
+              taken: ": este Email ya está registrado"
             password:
               blank: ": ingrese una contraseña"
+            faculty:
+              required: "¡HAY QUE HACER LA ASIGNACIÓN!"

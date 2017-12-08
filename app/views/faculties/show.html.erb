@@ -3,7 +3,7 @@
   <%= @faculty.name %>
   </h3>
 
-<% if @users.blank? %>
+<% if @faculty.questions.blank? %>
   <strong> Esta Facultad no tiene preguntas </strong>
 <% else %>
 
@@ -19,14 +19,12 @@
     <th>Ver Pregunta</th>
   </tr>
 
-	<% @users.each do |u| %>
-		<% u.questions.each do |q| %>
+	<% @faculty.questions.each do |q| %>
 			<tr>
 				<td><%= q.titulo %></td>
 				<td><%= q.descripcion %></td>
 				<td><%= link_to 'Ver', question_path(q) %></td>
 			</tr>
-		<% end %>
 	<% end %>
 	
 	<tr>
