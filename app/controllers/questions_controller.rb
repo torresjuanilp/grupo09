@@ -61,7 +61,11 @@ class QuestionsController < ApplicationController
     	@question.titulo = params[:question][:titulo]
     	@question.descripcion = params[:question][:descripcion]
          	@question.user_id = current_user.id
+
+	#ASIGNACIÓN DE FACULTAD POR DEFECTO. Cambiarla con la asignación real.
 	@question.faculty = Faculty.find_by(name: "Otra")
+
+
     	if @question.category_ids.size > 5
 			flash[:danger] = "Elija 5 categorías como máximo."
 			redirect_to "/questions/new"
