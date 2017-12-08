@@ -1,0 +1,32 @@
+<p>
+  <h3> Facultad:
+  <%= @faculty.name %>
+  </h3>
+
+<% if @users.blank? %>
+  <strong> Esta Facultad no tiene usuarios </strong>
+<% else %>
+
+  <strong> Usuarios en esta Facultad </strong>
+  </br>
+</p>
+
+<p>
+<table class="table">
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Ver Perfil</th>
+  </tr>
+
+	<% @users.each do |u| %>
+		<tr>
+			<td><%= u.name %></td>
+			<td><%= u.apellido %></td>
+			<td><%= link_to 'Show', user_path(u) %></td>
+		</tr>
+	<% end %>
+</table>
+</br>
+<% end %>
+</p>

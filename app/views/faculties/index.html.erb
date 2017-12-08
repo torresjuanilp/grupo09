@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Facultades</h1>
+
+<table class="table">
+  <tr>
+    <th>Facultad</th>
+    <th>Ver Preguntas</th>
+    <th>Ver Usuarios</th>
+  </tr>
+
+	<% @faculties.order('name ASC').each do |f| %>
+		<tr>
+		<td> <%= f.name %> </td>
+		<td> <%= link_to 'Ver', :action => :show, :id => f.id %> </td>
+		<td> <%= link_to 'Ver', :action => :show_users, :id => f.id %> </td>
+		</tr>
+	<% end %>
+  <tr>
+		<% if user_signed_in? %>
+			<td colspan="2" align="center" >
+				</br>
+				<%= button_to 'Nueva Facultad', faculties_new_path , method: 'get', class: 'faculty' %>
+			</td>
+		<% end %>
+	</tr>
+</table>
+</br>
+
+
+<br>
+

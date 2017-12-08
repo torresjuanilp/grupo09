@@ -1,0 +1,43 @@
+<p>
+  <h3> Facultad:
+  <%= @faculty.name %>
+  </h3>
+
+<% if @users.blank? %>
+  <strong> Esta Facultad no tiene preguntas </strong>
+<% else %>
+
+  <strong> Preguntas en esta Facultad </strong>
+  </br>
+</p>
+
+<p>
+<table class="table">
+  <tr>
+    <th>Título</th>
+    <th>Cuerpo</th>
+    <th>Ver Pregunta</th>
+  </tr>
+
+	<% @users.each do |u| %>
+		<% u.questions.each do |q| %>
+			<tr>
+				<td><%= q.titulo %></td>
+				<td><%= q.descripcion %></td>
+				<td><%= link_to 'Ver', question_path(q) %></td>
+			</tr>
+		<% end %>
+	<% end %>
+	
+	<tr>
+		<% if (@faculty.name != "Otra") && user_signed_in? %>
+		<td colspan="2" align="center" >
+			</br>
+			<%= button_to "Eliminar Facultad", faculties_destroy_path , method: 'delete', class: 'faculty', :data => {:confirm => '¿Estás seguro?'} %>
+		</td>
+		<% end %>
+	</tr>
+</table>
+</br>
+<% end %>
+</p>

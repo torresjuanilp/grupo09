@@ -1,0 +1,18 @@
+<h1>Crear nueva Facultad</h1>
+
+<%= form_for @faculty do |f| %>
+	<table class="table">
+    <tr>
+      <td><%= f.label :name %></td>
+      <td>
+      	<%= f.text_field :name, label: 'name', placeholder: 'Ingrese el nombre' , :required => true , size: 50, :uniqueness => true %>
+      </td>
+    </tr>
+</tr> 
+<tr>
+      <td colspan="2" align="center" >
+  		  <%= f.submit "Crear", class: 'btn btn-primary' %>
+      </td>
+    </tr>
+  </table>
+<% end %>

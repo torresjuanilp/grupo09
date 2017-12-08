@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  get 'faculties/new' => 'faculties#new'
+  
+  get'faculties/show_users' => 'faculties#show_users'
+
+  get 'faculties/create' 
+
+  get 'faculties/edit'
+
+  get 'faculties/update'
+
+  get 'faculties/destroy'
+
+  get 'faculties/show' => 'faculties#show'
+
+  get 'faculties/index' => 'faculties#index'
+
   get 'permits/create'
 
   get 'permits/show'

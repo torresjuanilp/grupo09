@@ -8,4 +8,5 @@ class User < ApplicationRecord
 	has_many :answers
 	accepts_nested_attributes_for :questions
 	has_many :permits
+	belongs_to :faculty
 end
