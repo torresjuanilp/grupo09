@@ -132,7 +132,7 @@
 		<h2>Respuestas </h2>
 	</div>
 </div>
-<% @question.answers.each do |ans| %> </br>
+<% @question.answers.order('mejor_resp DESC')each do |ans| %> </br>
 
 <div class ="row">
 	<div class="col-md-12">
@@ -176,10 +176,10 @@
 
 			<%if ( current_user and @question.user_id == current_user.id) %>
 			<div class ="col-md-2">
+				<% if @question.tiene_mejor_resp == false %>
 				<%= form_tag ("/answers/elegirmejor") do %>
 				<%= hidden_field_tag(:answer_id, ans.id) %>
 				<%= hidden_field_tag(:question_id, @question.id) %>
-				<% if @question.tiene_mejor_resp == false %>
 				<%= submit_tag("Mejor respuesta", class: 'btn btn-clasic', style:"margin-top: 20px;", :onclick => "return confirmar('Desea elegir la mejor respuesta?');") %>
 				<% end %>
 			</div>             

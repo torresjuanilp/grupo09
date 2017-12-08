@@ -66,37 +66,46 @@ class AnswersController < ApplicationController
   end
   def delete
   if Answer.find(params[:answer_id]).user == current_user
-    Answer.find(params[:answer_id]).destroy
-    flash[:success] = "Se elimino el comentario correctamente"
-    redirect_to "/questions"
+     a=Answer.find(params[:answer_id])
+     a.question.tiene_mejor_resp = true 
+     a.mejor_resp = false
+    a.destroy
+    flash[:success] = "Se elimino la respuesta correctamente"
+    redirect_back( fallback_location: (request.referer || root_path))
   else
 
     flash[:error] = "No tiene permiso para eleminar este comentario"
 
-    redirect_to "/questions"
+     redirect_back( fallback_location: (request.referer || root_path))
   end
 end
 def elegirmejor
 if Question.find(params[:question_id]).user == current_user 
-  answer = Answer.find(params[:answer_id])
-  answer.mejor_resp = true
-  q=Question.find(params[:question_id])
-  q.tiene_mejor_resp = true
-  usuario = answer.user
+  if Question.find(params[:question_id]).tiene_mejor_resp == false
+    answer = Answer.find(params[:answer_id])
+    answer.mejor_resp = true
+    q=Question.find(params[:question_id])
+    q.tiene_mejor_resp = true
+    usuario = answer.user
 
-  if usuario.id != q.user.id
+    if usuario.id != q.user.id
 
-    usuario.puntaje += 50
+      usuario.puntaje += 20
+    end
+     if answer.save and q.save and usuario.save
+       flash[:success] = "Se elegió la mejor respuesta."
+        redirect_to answer.question
+        end
+  else 
+       flash[:error] = "YA hay una mejor respuesta"
+        redirect_to "/questions"
   end
-   if answer.save and q.save and usuario.save
-     flash[:success] = "Se elegió la mejor respuesta."
-      redirect_to answer.question
-      end
 else
   flash[:error] = "No posee los permisos necesarios para elegir la mejor respuesta"
   redirect_to "/questions"
 end
 end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
