@@ -29,10 +29,10 @@ if (Question.find(params[:question_id]).user == current_user )
     usuario = answer.user
 
     if usuario.id != q.user.id
-
       usuario.puntaje += 20
+      usuario.save
     end
-     if answer.save and q.save and usuario.save
+     if (answer.save && q.save)
        flash[:success] = "Se elegió la mejor respuesta."
         redirect_to answer.question
       else
@@ -97,6 +97,7 @@ end
      a=Answer.find(params[:answer_id])
      if (a.mejor_resp == true)
       a.question.tiene_mejor_resp = false
+      a.question.save
       a.mejor_resp = false
    end
     a.destroy
