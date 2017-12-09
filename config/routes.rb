@@ -46,9 +46,10 @@ post 'comments/delete' => 'comments#delete'
 
   post 'answers/responder' => 'comments#responder'
 get 'answers/index' 
+ post 'answers/elegirmejor' => 'answers#elegirmejor'
  post 'answers/new' => 'answers#new'
  post 'answers/delete' => 'answers#delete'
- post 'answers/elegirmejor' => 'answers#elegirmejor'
+
 	post 'answers/show' => 'answers#show'
 
   get '/users/show' => 'users#show'

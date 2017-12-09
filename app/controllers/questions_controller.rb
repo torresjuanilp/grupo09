@@ -114,9 +114,11 @@ class QuestionsController < ApplicationController
     @question.answers.destroy_all
     @question.destroy
     flash[:success] = "La pregunta ha sido eliminada."
+    redirect_to "/questions"
   else
 
     flash[:danger] = " No se pudo eliminar la pregunta."
+     redirect_to "/questions"
       end
   end
 

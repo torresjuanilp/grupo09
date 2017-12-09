@@ -174,9 +174,9 @@
 
 			<%end%>
 
-			<%if ( current_user and @question.user_id == current_user.id) %>
+			<%if (current_user == @question.user) %>
 			<div class ="col-md-2">
-				<% if @question.tiene_mejor_resp == false %>
+				<% if @question.tiene_mejor_resp == false  %>
 				<%= form_tag ("/answers/elegirmejor") do %>
 				<%= hidden_field_tag(:answer_id, ans.id) %>
 				<%= hidden_field_tag(:question_id, @question.id) %>
