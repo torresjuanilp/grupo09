@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :faculties
   get 'faculties/new' => 'faculties#new'
   
-  get'faculties/show_users' => 'faculties#show_users'
+controller :faculties do
+  get 'faculties/show_users/:id', to: 'faculties#show_users', as: :faculties_show_users
+end
 
   get 'faculties/create' 
 

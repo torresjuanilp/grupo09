@@ -31,10 +31,7 @@ class FacultiesController < ApplicationController
 	end
   end
 
-  def show_users
-	@faculty = Faculty.find(params[:id])
-	@users = Faculty.find(params[:id]).users.all
-  end
+  
 
   def edit
   end
@@ -70,7 +67,10 @@ class FacultiesController < ApplicationController
 
   def show
 	@faculty = Faculty.find(params[:id])
-	@users = Faculty.find(params[:id]).users.all
+  end
+
+  def show_users
+	@faculty = Faculty.find(params[:id])
   end
 
   def index
