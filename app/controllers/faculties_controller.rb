@@ -34,9 +34,45 @@ class FacultiesController < ApplicationController
   
 
   def edit
+	if current_user.permits.find_by(name: "Administrar facultades") == nil
+		flash[:danger] = "No posee los permisos para editar una facultad."
+		redirect_to faculties_path
+	else
+		@faculty = Faculty.find(params[:id])
+	end
+	
   end
 
   def update
+	@faculty = Faculty.find(params[:id])
+if params[:faculty][:name] == "Otra"
+	flash[:danger] = "Nombre no permitido."
+	redirect_to faculties_path
+else
+	if Faculty.find_by(name: params[:faculty][:name]) == nil
+		if @faculty.update_attribute(:name,params[:faculty][:name])
+			flash[:success] = "La Facultad se ha guardado con exito."
+			redirect_to faculties_path
+		else
+			flash[:danger] = "Error al editar la Facultad."
+			redirect_to faculties_path
+		end
+	else
+		if params[:faculty][:name] == @faculty.name 
+			if @faculty.update_attribute(:name,params[:faculty][:name])
+				flash[:success] = "La Facultad se ha guardado con exito."
+				redirect_to faculties_path
+			else
+				flash[:danger] = "Error al editar la Facultad."
+				redirect_to faculties_path
+			end
+		else
+			flash[:danger] = "La Facultad especificada ya existe."
+			redirect_to faculties_path
+		end
+	end
+end
+
   end
 
   def destroy

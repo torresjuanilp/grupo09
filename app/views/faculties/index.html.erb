@@ -5,8 +5,9 @@
 <table class="table">
   <tr>
     <th>Facultad</th>
-    <th>Ver Preguntas</th>
+    <th>Ver Facultad</th>
     <th>Ver Usuarios</th>
+    <th>Editar</th>
   </tr>
 
 	<% @faculties.order('name ASC').each do |f| %>
@@ -14,6 +15,11 @@
 		<td> <%= f.name %> </td>
 		<td> <%= link_to 'Ver', :action => :show, :id => f.id %> </td>
 		<td> <%= link_to 'Ver', :action => :show_users, :id => f.id %> </td>
+		<% if f.id != Faculty.find_by(name: "Otra").id %>
+			<td> <%= link_to 'Editar', :action => :edit, :id => f.id %>
+		<% else %>
+			<td> Facultad por defecto </td>
+		<% end %>
 		</tr>
 	<% end %>
   <tr>

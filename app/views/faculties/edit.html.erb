@@ -1,2 +1,18 @@
-<h1>Faculties#edit</h1>
-<p>Find me in app/views/faculties/edit.html.erb</p>
+<h1>Editar Facultad</h1>
+
+<%= form_for @faculty do |f| %>
+	<table class="table">
+    <tr>
+      <td><%= f.label :nombre %></td>
+      <td>
+      <%= f.text_field :name, label: 'nombre', placeholder: 'Ingrese el nuevo nombre' , :required => true , size: 50, :uniqueness => true %>
+      </td>
+    </tr>
+</tr> 
+<tr>
+      <td colspan="2" align="center" >
+  		  <%= f.submit "Guardar cambios", class: 'btn btn-primary' %>
+      </td>
+    </tr>
+  </table>
+<% end %>
