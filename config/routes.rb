@@ -23,6 +23,8 @@ end
   get 'permits/show'
 
   get 'permits/index'
+  get 'permits/disable'
+  get 'permits/enable'
 get "permits/:id/edit" => "permits#edit"
 put "permits/:id" => "permits#update"
   resources :questions

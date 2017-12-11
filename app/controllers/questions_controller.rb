@@ -20,11 +20,18 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     if current_user
-	if current_user.permits.find_by(name: "Crear pregunta") == nil
-		flash[:danger] = "No cuenta con los permisos para publicar."
-		redirect_to "/"
+	if Permit.find_by(name: "Crear pregunta").enabled?
+		if current_user.permits.find_by(name: "Crear pregunta") == nil
+
+			flash[:danger] = "No cuenta con los permisos para publicar."
+			redirect_to "/"
+		else
+     			@question = Question.new   
+		end
 	else
-     		@question = Question.new   
+		flash[:danger] = "No está permitida la creación de preguntas."
+
+      		redirect_to "/"
 	end
     else 
       flash[:danger] = "No cuenta con los permisos para publicar. REGISTRESE."

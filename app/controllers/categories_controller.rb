@@ -13,11 +13,16 @@ class CategoriesController < ApplicationController
 	end
 	
 	def new
+		if Permit.find_by(name: "Administrar categorias").enabled?
 		if current_user.permits.find_by(name: "Administrar categorias") == nil
 			flash[:danger] = "No tiene los permisos necesarios para crear una categoría."
 			redirect_to categories_path
 		else
 			@category = Category.new
+		end
+		else
+			flash[:danger] = "No está permitida la creación de categorías."
+			redirect_to categories_path
 		end
 	end
 	
@@ -48,6 +53,7 @@ class CategoriesController < ApplicationController
 	def destroy
 		
 	if user_signed_in?
+	if Permit.find_by(name: "Administrar categorias").enabled?		
 		if current_user.permits.find_by(name: "Administrar categorias") == nil
 			flash[:danger] = "No tiene los permisos necesarios para eliminar una categoría."
 			redirect_to categories_path
@@ -69,8 +75,12 @@ class CategoriesController < ApplicationController
 			end
 		end
 	else
-			flash[:danger] = "Sólo los usuarios registrados pueder realizar esta acción."
-			redirect_to categories_path
+		flash[:danger] = "No está permitida la eliminación de categorías."
+		redirect_to categories_path
+	end
+	else
+		flash[:danger] = "Sólo los usuarios registrados pueder realizar esta acción."
+		redirect_to categories_path
 	end
 	end
 end

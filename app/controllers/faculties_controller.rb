@@ -1,11 +1,16 @@
 class FacultiesController < ApplicationController
   def new
-	if current_user.permits.find_by(name: "Administrar facultades") == nil
+	if Permit.find_by(name: "Administrar facultades").enabled?
+		if current_user.permits.find_by(name: "Administrar facultades") == nil
 			flash[:danger] = "No tiene los permisos necesarios para crear una Facultad."
 			redirect_to faculties_path
 		else
 			@faculty = Faculty.new
 		end
+	else
+		flash[:danger] = "No está permitida la creación de Facultades."
+		redirect_to faculties_path
+	end
   end
 
   def create
@@ -34,11 +39,16 @@ class FacultiesController < ApplicationController
   
 
   def edit
-	if current_user.permits.find_by(name: "Administrar facultades") == nil
-		flash[:danger] = "No posee los permisos para editar una facultad."
-		redirect_to faculties_path
+	if Permit.find_by(name: "Administrar facultades").enabled?
+		if current_user.permits.find_by(name: "Administrar facultades") == nil
+			flash[:danger] = "No posee los permisos para editar una facultad."
+			redirect_to faculties_path
+		else
+			@faculty = Faculty.find(params[:id])
+		end
 	else
-		@faculty = Faculty.find(params[:id])
+		flash[:danger] = "No está permitida la edición de Facultades."
+		redirect_to faculties_path
 	end
 	
   end
@@ -77,6 +87,7 @@ end
 
   def destroy
 	if user_signed_in?
+	if Permit.find_by(name: "Administrar facultades").enabled?
 		if current_user.permits.find_by(name: "Administrar facultades") == nil
 			flash[:danger] = "No tiene los permisos necesarios para eliminar una Facultad."
 			redirect_to faculties_path
@@ -95,6 +106,10 @@ end
 				redirect_to faculties_path
 			end
 		end
+	else
+			flash[:danger] = "No está permitida la eliminación de Facultades."
+			redirect_to faculties_path
+	end
 	else
 			flash[:danger] = "Sólo los usuarios registrados pueder realizar esta acción."
 			redirect_to faculties_path

@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
+  if Permit.find_by(name: "Comentar").enabled?
   if current_user.permits.find_by(name: "Comentar") == nil
 	flash[:danger] = "No tiene los permisos para comentar."
 	redirect_to "/"
@@ -35,6 +36,11 @@ class CommentsController < ApplicationController
       flash[:danger] = "Hubo algun problema al enviar el mensaje."
         redirect_to "/"
     end
+  end
+  else
+	flash[:danger] = "No está permitida la creación de comentarios."
+	redirect_to "/"
+ 
   end
   end
 

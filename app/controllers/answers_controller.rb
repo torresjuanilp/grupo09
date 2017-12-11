@@ -50,6 +50,7 @@ end
 end
   # POST /answers.json
   def new
+  if Permit.find_by(name: "Crear pregunta").enabled?
 	if current_user.permits.find_by(name: "Crear pregunta") == nil
 		flash[:danger] = "No tiene los permisos para crear una respuesta."
 		redirect_to "/"
@@ -67,6 +68,10 @@ end
         			redirect_to "/"
 			end
 	end
+  else
+	flash[:danger] = "No está permitida la creación de respuestas."
+        redirect_to "/"
+  end
   end  
 
   # PATCH/PUT /answers/1

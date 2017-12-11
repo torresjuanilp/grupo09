@@ -16,22 +16,22 @@
   </div>
   <% end %>
   <p>
-    <%= f.label :name %><br>
+    <%= f.label :nombre %><br>
     <%= f.text_field :name %>
   </p>
 
   <p>
-    <%= f.label :descripcion %><br>
+    <%= f.label :descripción %><br>
     <%= f.text_area :descripcion %>
   </p>
   <p>
-    <%= f.label :score %><br>
+    <%= f.label :puntaje %><br>
     <%= f.text_area :score %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit "Guardar cambios"%>
   </p>
 <% end %>
  
 
-<%= link_to 'Back', :action => :index %>
+<%= link_to 'Atrás', :action => :index %>

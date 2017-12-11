@@ -6,17 +6,42 @@
     <th>Permiso</th>
     <th>Descripción</th>
     <th>Puntaje necesario</th>
+    
+    <th>Estado</th>
     <th>Editar </th>
+    <% if user_signed_in? && current_user.permits.find_by(name: "Modificar contenidos") != nil %>
+	<th>Modificar</th>
+    <% end %>
+	
   </tr>
 
 	<% Permit.all.order('score ASC').each do |p| %>
 		<tr>
-		<td> <%= p.name %> </td>
-		<td> <%= p.descripcion %> </td>
-		<td> <%= p.score %> </td>
-		<td>
-		<%= link_to 'Edit', :action => :edit, :id => p.id %> 
-		</td>
+			<td> <%= p.name %> </td>
+			<td> <%= p.descripcion %> </td>
+			<td> <%= p.score %> </td>
+			
+			<% if p.enabled? %>
+				<td> Habilitado </td>
+			<% else %>
+				<td> Deshabilitado </td>
+			<% end %>
+			<% if p.name == "Modificar contenidos" %>
+				<td>No permitido</td>
+			<% else %>
+				<td> <%= link_to 'Editar', :action => :edit, :id => p.id %> </td>
+			<% end %>
+			<% if user_signed_in? && current_user.permits.find_by(name: "Modificar contenidos") != nil %>
+			<% if p.name == "Modificar contenidos" %>
+				<td>No permitido</td>
+			<% else %>
+				<% if p.enabled? %>
+					<td><%= link_to "Deshabilitar", {:controller => "permits", :action => "disable", :id => p.id} %></td>
+				<% else %>
+					<td><%= link_to "Habilitar", {:controller => "permits", :action => "enable", :id => p.id} %></td>
+				<% end %>
+			<% end %>
+   			<% end %>
 		</tr>
 		
 	<% end %>
