@@ -35,17 +35,18 @@ class PermitsController < ApplicationController
 def update
   @permit = Permit.find(params[:id])
   if user_signed_in? && current_user.permits.find_by(name: "Modificar contenidos") != nil 
-  permitted_columns = params.require(:permit).permit(:name, :description, :score)
-  if @permit.update_attributes(permitted_columns)
-  	flash[:success] = "El permiso ha sido editado."
-  	redirect_to permits_index_ṕath
-  else
-  		flash[:danger] = "El permiso no se ha podido editar."
-  	redirect_to permits_index_ṕath
-  end
+	  permitted_columns = params.require(:permit).permit(:name, :description, :score)
+	  if @permit.update_attributes(permitted_columns)
+	  	flash[:success] = "El permiso ha sido editado."
+	  	redirect_to permits_index_ṕath
+	  else
+	  		flash[:danger] = "El permiso no se ha podido editar."
+	  	redirect_to permits_index_ṕath
+	  end
 else 
 	flash [:danger] = "No cuenta con los permisos suficientes para realizar esta accion."
 	redirect_to permits_index_ṕath
+end
 end
   def index
   end
