@@ -15,6 +15,8 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     @question = Question.find(params[:id])
+    @question.visits_count += 1
+    @question.save
   end
 
   # GET /questions/new

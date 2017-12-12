@@ -16,6 +16,7 @@
 	Category.find_or_create_by(name: "Ruby")
 	Category.find_or_create_by(name: "Informática")
 
+	
 	Permit.find_or_create_by(name: "Crear pregunta", score: 1, descripcion: "Crear una pregunta o una respuesta", user_id: 1, enabled: true)
 	Permit.find_or_create_by(name: "Votar positivo", score: 15, descripcion: "Votar de forma positiva en preguntas, respuests y comentarios", user_id: 1, enabled: true)
 	Permit.find_or_create_by(name: "Comentar", score: 20, descripcion: "Comentar en preguntas y respuestas", user_id: 1, enabled: true)

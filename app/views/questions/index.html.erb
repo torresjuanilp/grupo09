@@ -16,8 +16,8 @@
     <th>Autor</th>
     <th>Mostrar</th>
   </tr>
-	
-  		<% @questions.all.each do |q| %>
+	<h4> Ultimas preguntas </h4> <!-- deberia mostrar las mas recientes pero rompi el scope  -->
+  		<% @questions.alleach do |q| %>
     		<tr>
       			<td><%= q.titulo %></td>
       			<td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
@@ -26,6 +26,27 @@
     		</tr>
  		<% end %>
 	
+</table>
+<h4> Preguntas mas visitadas del mes </h4>
+<table class ="table">
+  <tr>
+  <th>Titulo de pregunta</th>
+    <th>Descripcion</th>
+<th>Visitas</th>
+    <th>Autor</th>
+    <th>Mostrar</th>
+  </tr>
+  
+      <% @questions.recent.each do |q| %>
+        <tr>
+            <td><%= q.titulo %></td>
+            <td> <%= q.visits_count %> </td>
+            <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
+        <td> <%= link_to(q.user.name, user_path(q.user)) if user = q.user %> </td>
+            <td style = "padding-left: 10px "><%= link_to 'Ver', :action => :show, :id => q.id %></td>
+        </tr>
+    <% end %>
+  
 </table>
 <% end %>
 

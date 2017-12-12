@@ -17,12 +17,16 @@ class Question < ActiveRecord::Base
 					
 	
 	default_scope -> { order("created_at desc") }
+scope :recent, -> { Question.unscope(:order).order("visits_count desc").where("created_at >= ?", 1.month.ago) }
 
 def self.search(search)
   #where("titulo LIKE ?", "%#{search}%")
   where("titulo LIKE ? OR descripcion LIKE ?", "%#{search}%","%#{search}%")
 end
 
+def self.recent_visit_questions
+	Question.where("created_at >= ?", 1.month.ago.utc).order("visits_count DESC, created_at DESC")
+end
 
 	
 end
