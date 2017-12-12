@@ -1,1 +1,18 @@
-a
+<h1>Editar Categoría</h1>
+
+<%= form_for @category do |c| %>
+	<table class="table">
+    <tr>
+      <td><%= c.label :nombre %></td>
+      <td>
+      <%= c.text_field :name, label: 'nombre', placeholder: 'Ingrese el nuevo nombre' , :required => true , size: 50, :uniqueness => true %>
+      </td>
+    </tr>
+</tr> 
+<tr>
+      <td colspan="2" align="center" >
+  		  <%= c.submit "Guardar cambios", class: 'btn btn-primary' %>
+      </td>
+    </tr>
+  </table>
+<% end %>
