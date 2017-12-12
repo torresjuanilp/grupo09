@@ -38,14 +38,14 @@ def update
 	  permitted_columns = params.require(:permit).permit(:name, :description, :score)
 	  if @permit.update_attributes(permitted_columns)
 	  	flash[:success] = "El permiso ha sido editado."
-	  	redirect_to "/permits"
+	  	redirect_to "/permits/index"
 	  else
 	  		flash[:danger] = "El permiso no se ha podido editar."
-	  	redirect_to permits_index_path
+	  		redirect_to "/permits/index"
 	  end
 else 
 	flash[:danger] = "No cuenta con los permisos suficientes para realizar esta accion."
-	redirect_to permits_index_path
+		redirect_to "/permits/index"
 end
 end
   def index
