@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20171212181752) do
     t.boolean "tiene_mejor_resp", default: false
     t.integer "faculty_id"
     t.integer "visits_count", default: 1
-    t.integer "answers_count" default 0
+    t.integer "answers_count"
   end
 
   create_table "users", force: :cascade do |t|
