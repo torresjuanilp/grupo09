@@ -16,8 +16,11 @@
     <%= f.text_field :apellido, autofocus: true %>
   </div>
 <div class="field">
-    <%= f.label :facultad %><br />
-  <%= f.collection_select :facultad, Faculty.order(:name),:id,:name, include_blank: true %>
+    <div class="control-group">
+    <%= f.label :facultad, class: 'control-group' %><br />
+    <div class="controls">
+    <%= collection_select(:user, :faculty_id, Faculty.all.order("name ASC"), :id, :name, include_blank: true) %>
+  </div>
   </div>
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

@@ -12,19 +12,25 @@ class CategoriesController < ApplicationController
 		@question = Question.find(params[:id])
 	end
 
-	  def edit
+  def edit
 	if Permit.find_by(name: "Administrar categorias").enabled?
+		if user_signed_in?
 		if current_user.permits.find_by(name: "Administrar categorias") == nil
-			flash[:danger] = "No posee los permisos para editar una categoria."
+			flash[:danger] = "No posee los permisos para editar una categoría."
 			redirect_to categories_path
 		else
-			@category = Categories.find(params[:id])
+			@category = Category.find(params[:id])
 		end
 	else
+		if user_signed_in?
 		flash[:danger] = "No está permitida la edición de Categorías."
+	else 
+		flash[:danger] = "Debes iniciar sesión para modificar categoría"
 		redirect_to categories_path
 	end
-end
+	end
+	end
+  end
 	
 	def new
 		if Permit.find_by(name: "Administrar categorias").enabled?
@@ -63,7 +69,38 @@ end
 	end
 		
 	end
-	
+
+  def update
+	@category = Category.find(params[:id])
+if params[:category][:name] == ""
+	flash[:danger] = "Nombre no permitido."
+	redirect_to categories_path
+else
+	if Category.find_by(name: params[:category][:name]) == nil
+		if @category.update_attribute(:name,params[:category][:name])
+			flash[:success] = "La Categoría se ha guardado con exito."
+			redirect_to categories_path
+		else
+			flash[:danger] = "Error al editar la Categoría."
+			redirect_to categories_path
+		end
+	else
+		if params[:category][:name] == @category.name 
+			if @category.update_attribute(:name,params[:category][:name])
+				flash[:success] = "La Categoría se ha guardado con exito."
+				redirect_to categories_path
+			else
+				flash[:danger] = "Error al editar la Categoría."
+				redirect_to categories_path
+			end
+		else
+			flash[:danger] = "La Categoría especificada ya existe."
+			redirect_to categories_path
+		end
+	end
+end
+end
+
 	def destroy
 		
 	if user_signed_in?

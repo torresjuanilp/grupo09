@@ -35,6 +35,8 @@ es:
       models: 
         user:
           attributes:
+            current_password:
+             blank: ": ingrese su contraseña actual"
             email:
               blank: ": ingrese un Email"
               taken: ": este Email ya está registrado"

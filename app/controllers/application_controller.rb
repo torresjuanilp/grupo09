@@ -8,8 +8,8 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :apellido, :facultad])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :apellido, :facultad])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :apellido, :faculty_id])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :apellido, :faculty_id])
   end
 
 end
