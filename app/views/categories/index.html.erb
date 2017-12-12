@@ -6,13 +6,18 @@
   <tr>
     <th>Categoría</th>
     <th>Ver Preguntas</th>
+	<% if user_signed_in? %>
+    		<th>Editar</th>
+	<% end %>
   </tr>
 
 	<% @categories.order('name ASC').each do |c| %>
 		<tr>
 		<td> <%= c.name %> </td>
 		<td> <%= link_to 'Ver', :action => :show, :id => c.id %> </td>
-		<td> <%= link_to 'Editar', :action => :edit, :id => c.id %>
+		<% if user_signed_in? %>
+			<td> <%= link_to 'Editar', :action => :edit, :id => c.id %>
+		<% end %>
 
 		</tr>
 	<% end %>
