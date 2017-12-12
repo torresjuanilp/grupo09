@@ -34,7 +34,14 @@
 			</td>		
 		</tr>
 	
-
+	<tr>
+			<td>
+				<%= q.label :facultad %>
+			</td>
+			<td>
+				  <%= q.collection_select :faculty, Faculty.order(:name),:id,:name, include_blank: true %>
+			</td>
+		</tr>
 	
 		<tr>
 			<td colspan="2" align="center" >

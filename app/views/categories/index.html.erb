@@ -12,6 +12,8 @@
 		<tr>
 		<td> <%= c.name %> </td>
 		<td> <%= link_to 'Ver', :action => :show, :id => c.id %> </td>
+		<td> <%= link_to 'Editar', :action => :edit, :id => c.id %>
+
 		</tr>
 	<% end %>
 	<tr>

@@ -11,6 +11,20 @@ class CategoriesController < ApplicationController
 	def show_pregunta
 		@question = Question.find(params[:id])
 	end
+
+	  def edit
+	if Permit.find_by(name: "Administrar categorias").enabled?
+		if current_user.permits.find_by(name: "Administrar categorias") == nil
+			flash[:danger] = "No posee los permisos para editar una categoria."
+			redirect_to categories_path
+		else
+			@category = Categories.find(params[:id])
+		end
+	else
+		flash[:danger] = "No está permitida la edición de Categorías."
+		redirect_to categories_path
+	end
+end
 	
 	def new
 		if Permit.find_by(name: "Administrar categorias").enabled?
@@ -84,3 +98,4 @@ class CategoriesController < ApplicationController
 	end
 	end
 end
+
