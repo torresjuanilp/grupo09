@@ -4,3 +4,53 @@
 <p>Apellido: <%= @user.apellido %></p>
 <p>Facultad: <%= @user.facultad %></p>
 <p>Puntaje: <%= @user.puntaje %>
+<p>Preguntas del usuario <%= @user.name%>: </p>
+<table class ="table">
+  <tr>
+  <th>Titulo de pregunta</th>
+    <th>Descripcion</th>
+
+    <th>Mostrar</th>
+    <th>Cantidad de respuestas</th>
+  </tr>
+      <% @user.questions.each do |q| %>
+        <tr>
+            <td><%= q.titulo %></td>
+            <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
+            <td style = "padding-left: 10px "><%= link_to 'Ver', :action => :show, :id => q.id %></td>
+            <td> <%= q.answers_count %>
+        </tr>
+    <% end %>
+  
+</table>
+<p>Respuestas del usuario <%= @user.name%>:</p>
+
+<% if @user.answers.count > 0 %>
+
+
+<table class ="table">
+	<tr>
+		<th>Titulo de pregunta</th>
+		<th>Descripcion</th>
+		<th>Respuesta del usuario</th>
+		<th>Mostrar</th>
+	</tr>
+
+	<% @user.answers.all.each do |a| %>
+		<tr>
+				
+			<td><%= a.question.titulo %></td>
+			<td><%= a.question.descripcion %></td>		
+			<td> <%= a.texto %> </td>
+			
+			<td style = "padding-left: 10px "> <%= link_to 'Ver', question_path(a.question.id) %> </td>
+		</tr>
+	<% end %>
+</table>
+
+<% else %>
+
+<p>Este usuario no tiene respuestas</p>
+
+<% end %>
+

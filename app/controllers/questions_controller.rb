@@ -72,7 +72,6 @@ class QuestionsController < ApplicationController
          	@question.user_id = current_user.id
 
 	#ASIGNACIÓN DE FACULTAD POR DEFECTO. Cambiarla con la asignación real.
-	@question.faculty = Faculty.find_by(name: "Otra")
 
 
     	if @question.category_ids.size > 5
@@ -139,7 +138,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-		params.require(:question).permit(:titulo, :descripcion, {category_ids: []})
+		params.require(:question).permit(:titulo, :descripcion, :faculty_id, {category_ids: []})
 		#params.fetch(:question, {})
     end
 end

@@ -1,4 +1,4 @@
-class AddAnswerscountToQuestions < ActiveRecord::Migration[5.1]
+	class AddAnswerscountToQuestions < ActiveRecord::Migration[5.1]
   def change
   end
 end
