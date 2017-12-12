@@ -17,7 +17,7 @@
     <th>Mostrar</th>
   </tr>
 	<h4> Ultimas preguntas </h4> <!-- deberia mostrar las mas recientes pero rompi el scope  -->
-  		<% @questions.alleach do |q| %>
+  		<% @questions.all.each do |q| %>
     		<tr>
       			<td><%= q.titulo %></td>
       			<td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
