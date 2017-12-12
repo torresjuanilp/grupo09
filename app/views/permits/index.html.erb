@@ -29,7 +29,9 @@
 			<% if p.name == "Modificar contenidos" %>
 				<td>No permitido</td>
 			<% else %>
+				<% if user_signed_in? && current_user.permits.find_by(name: "Modificar contenidos") != nil %>
 				<td> <%= link_to 'Editar', :action => :edit, :id => p.id %> </td>
+				<% end %>
 			<% end %>
 			<% if user_signed_in? && current_user.permits.find_by(name: "Modificar contenidos") != nil %>
 			<% if p.name == "Modificar contenidos" %>
