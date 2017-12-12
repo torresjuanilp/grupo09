@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20171212131834) do
     t.integer "category_id"
     t.string "slug"
     t.boolean "tiene_mejor_resp", default: false
-    t.integer "answers_count", default: 0
     t.integer "faculty_id"
     t.integer "visits_count", default: 0
   end

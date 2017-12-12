@@ -10,7 +10,7 @@
 	Permit.destroy_all
 	Faculty.destroy_all
 	Question.destroy_all
-
+	
 	Category.find_or_create_by(name: "General")
 	Category.find_or_create_by(name: "Rails")
 	Category.find_or_create_by(name: "Ruby")
