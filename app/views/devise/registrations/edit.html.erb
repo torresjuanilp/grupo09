@@ -17,7 +17,7 @@
   </div>
 <div class="field">
     <%= f.label :facultad %><br />
-    <%= f.text_field :facultad, autofocus: true %>
+  <%= f.collection_select :facultad, Faculty.order(:name),:id,:name, include_blank: true %>
   </div>
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
