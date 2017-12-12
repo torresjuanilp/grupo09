@@ -39,7 +39,7 @@
 				<%= q.label :facultad %>
 			</td>
 			<td>
-				  <%= collection_select(:question, :faculty_id, Faculty.all.order("name ASC"), :id, :name, include_blank: true) %>
+				  <%= collection_select(:question, :faculty_id, Faculty.all.order("name ASC"), :id, :name) %>
 			</td>
 		</tr>
 	

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212142445) do
+ActiveRecord::Schema.define(version: 20171212181752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,9 +84,9 @@ ActiveRecord::Schema.define(version: 20171212142445) do
     t.integer "category_id"
     t.string "slug"
     t.boolean "tiene_mejor_resp", default: false
-    t.integer "answers_count", default: 0
     t.integer "faculty_id"
-    t.integer "visits_count", default: 0
+    t.integer "visits_count", default: 1
+    t.integer "answers_count" default 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20171212142445) do
     t.integer "question_id"
     t.integer "permit_id"
     t.integer "faculty_id"
+    t.integer "num"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

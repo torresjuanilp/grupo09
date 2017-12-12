@@ -46,7 +46,7 @@ es-419:
           has_one: No se puede eliminar el registro porque existe un(a) %{record} dependiente
           has_many: No se puede eliminar el registro porque existen %{record} dependientes
   errors:
-    format: "%{attribute} %{message}"
+    format: "%{message}"
     messages:
       accepted: debe ser aceptado
       blank: no puede estar en blanco
