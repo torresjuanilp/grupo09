@@ -13,7 +13,7 @@
   <div class="control-group">
     <%= f.label :facultad, class: 'control-group' %><br />
     <div class="controls">
-    <%= collection_select(:user, :faculty_id, Faculty.all.order("name ASC"), :id, :name, include_blank: true) %>
+    <%= collection_select(:user, :faculty_id, Faculty.all.order("name ASC"), :id, :name) %>
   </div>
 </div>
     <div class="field">

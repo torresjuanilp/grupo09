@@ -19,11 +19,11 @@
     <th>Ver Perfil</th>
   </tr>
 
-	<% @users.each do |u| %>
+	<% @faculty.users.each do |u| %>
 		<tr>
 			<td><%= u.name %></td>
 			<td><%= u.apellido %></td>
-			<td><%= link_to 'Show', user_path(u) %></td>
+			<td><%= link_to 'Ver', user_path(u) %></td>
 		</tr>
 	<% end %>
 </table>
