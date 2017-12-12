@@ -12,9 +12,8 @@
   </div>
   <div class="field">
     <%= f.label :facultad %><br />
-    <%= f.text_field :facultad, autofocus: true %>
-  </div>
-  <div class="field">
+  <%= f.collection_select :facultad, Faculty.order(:name),:id,:name, include_blank: true %>
+    <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
