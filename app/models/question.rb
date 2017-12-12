@@ -15,9 +15,9 @@ class Question < ActiveRecord::Base
                     :length => { :minimum => 1 }  
 	validates :categories, :length => { :maximum => 5}
 					
-	
+	scope :respuestas, -> { Question.unscope(:order).order("answers_count, created_at DESC") }
+	scope :recent, -> { Question.unscope(:order).order("visits_count desc, created_at DESC").where("created_at >= ?", 1.month.ago) }
 	default_scope -> { order("created_at desc") }
-scope :recent, -> { Question.unscope(:order).order("visits_count desc, created_at DESC").where("created_at >= ?", 1.month.ago) }
 
 def self.search(search)
   #where("titulo LIKE ?", "%#{search}%")
