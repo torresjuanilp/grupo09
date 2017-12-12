@@ -8,8 +8,9 @@
     <th>Puntaje necesario</th>
     
     <th>Estado</th>
+     <% if user_signed_in? && current_user.permits.find_by(name: "Modificar contenidos") != nil %>
     <th>Editar </th>
-    <% if user_signed_in? && current_user.permits.find_by(name: "Modificar contenidos") != nil %>
+ 
 	<th>Modificar</th>
     <% end %>
 	

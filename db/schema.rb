@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(version: 20171212181752) do
     t.string "slug"
     t.boolean "tiene_mejor_resp", default: false
     t.integer "faculty_id"
-    t.integer "visits_count", default: 1
-    t.integer "answers_count" default 0
+    t.integer "visits_count", default: 0
+    t.integer "answers_count"
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 20171212181752) do
     t.integer "question_id"
     t.integer "permit_id"
     t.integer "faculty_id"
-    t.integer "num"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
