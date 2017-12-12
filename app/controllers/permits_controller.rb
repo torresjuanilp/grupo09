@@ -34,11 +34,13 @@ class PermitsController < ApplicationController
 
 def update
   @permit = Permit.find(params[:id])
-  if @permit.update_attributes(params[:permit])
-    redirect_to :action => :show, :id => @permit.id
-  else
-    render 'edit'
-  end
+  # if @permit.update_attributes(params[:permit])
+  #   redirect_to :action => :show, :id => @permit.id
+  # else
+  #   render 'edit'
+  # end
+  permitted_columns = params.require(:permit).permit(:name, :description, :score)
+  @permit.update_attributes(permitted_columns)
 end
   def index
   end
