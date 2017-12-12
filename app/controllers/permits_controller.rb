@@ -44,7 +44,7 @@ def update
 	  	redirect_to permits_index_ṕath
 	  end
 else 
-	flash [:danger] = "No cuenta con los permisos suficientes para realizar esta accion."
+	flash[:danger] = "No cuenta con los permisos suficientes para realizar esta accion."
 	redirect_to permits_index_ṕath
 end
 end
