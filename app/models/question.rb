@@ -1,7 +1,7 @@
 class Question < ActiveRecord::Base
 	#has_many : answers 
 	has_many :comments
-	has_and_belongs_to_many :categories, :join_table => 'categories_questions'
+	has_and_belongs_to_many :categories,:counter_cache => true, :join_table => 'categories_questions'
 	belongs_to :user
 	belongs_to :faculty
 	has_many :answers

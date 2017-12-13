@@ -7,4 +7,6 @@ class Category < ApplicationRecord
 	
 	
 	scope :permitted, -> { Category.order('name ASC').where.not(name: 'General') }
+
+	scope :cant_pregunta_categoria, -> { Category.unscope(:order).order("question_count DESC") }
 end
