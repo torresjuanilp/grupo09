@@ -33,17 +33,4 @@
 
 
 </br>
-<table class="table">
-  <tr>
-    <th>Categoría</th>
-    <th>Ver Preguntas</th>
-</tr>
-<% @categories.cant_pregunta_categoria.each do |ca| %>
-		<tr>
-		<td> <%= ca.name %> </td>
-		<td> <%= link_to 'Ver', :action => :show, :id => ca.id %> </td>
-		</tr>
-		<% end %>
-	</table>
-<br>
 

@@ -1,11 +1,8 @@
 class Question < ActiveRecord::Base
 	#has_many : answers 
 	has_many :comments
-<<<<<<< HEAD
-	has_and_belongs_to_many :categories, counter_cache: true, :join_table => 'categories_questions'
-=======
-	has_and_belongs_to_many :categories,:counter_cache => true, :join_table => 'categories_questions'
->>>>>>> edf7f3460f101d7c7711d607d0b191742c81b263
+
+	has_and_belongs_to_many :categories, :join_table => 'categories_questions'
 	belongs_to :user
 	belongs_to :faculty, counter_cache: true
 	has_many :answers

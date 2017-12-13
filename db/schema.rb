@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213142229) do
+ActiveRecord::Schema.define(version: 20171213151714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,11 +31,7 @@ ActiveRecord::Schema.define(version: 20171213142229) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-<<<<<<< HEAD
     t.integer "questions_count", default: 0
-=======
-    t.integer "question_count", default: 0
->>>>>>> edf7f3460f101d7c7711d607d0b191742c81b263
   end
 
   create_table "categories_questions", id: false, force: :cascade do |t|
@@ -90,7 +86,6 @@ ActiveRecord::Schema.define(version: 20171213142229) do
     t.integer "category_id"
     t.string "slug"
     t.boolean "tiene_mejor_resp", default: false
-    t.integer "answers_count", default: 0
     t.integer "faculty_id"
     t.integer "visits_count", default: 0
   end
