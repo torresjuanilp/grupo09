@@ -7,4 +7,5 @@ class Category < ApplicationRecord
 	
 	
 	scope :permitted, -> { Category.order('name ASC').where.not(name: 'General') }
+	scope :catemas, -> { Category.order('questions_count') }
 end
