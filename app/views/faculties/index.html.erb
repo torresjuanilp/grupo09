@@ -37,6 +37,10 @@
 </table>
 </br>
 
+<h4>La facultad con más preguntas es:  </h4>
+ <% @faculties.preguntas.limit(1).each do |f| %>
+<%= f.name %> con <%= f.questions_count %> respuesta/s
+ <% end %>
 
 <br>
 
