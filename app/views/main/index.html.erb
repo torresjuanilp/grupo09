@@ -7,7 +7,6 @@
 
    <% if user_signed_in?  %>
 <h1>Listado de preguntas de la misma facultad</h1>
-
 <table class ="table">
   <tr>
 	<th>Titulo de pregunta</th>
@@ -18,15 +17,24 @@
   </tr>
 
   <% Question.all.each do |q| %>
-   <% if user_signed_in?  %>
-  <% if current_user.facultad == q.user.facultad %>
+    <% if user_signed_in?  %>
+<% if q.user == nil %>
+	<td><%= q.titulo %></td>
+      <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
+	<td><%= 'Usuario eliminado' %></td>
+	<td style = "padding-left: 10px "><%= link_to 'Ver', :controller => "questions", :action => :show, :id => q.id %></td>
+<% else %>
+      <% if current_user.facultad == q.user.facultad %>
     <tr>
       <td><%= q.titulo %></td>
       <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
+
 	  <td> <%= link_to(q.user.name, user_path(q.user)) if user = q.user %> </td>
+
       <td style = "padding-left: 10px "><%= link_to 'Ver', :controller => "questions", :action => :show, :id => q.id %></td>
     </tr>
   	<% end %>
+<%end%>
    <% end %>
   <% end %>
   </table>
@@ -47,7 +55,11 @@
     <tr>
       <td><%= q.titulo %></td>
       <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
+	<% if q.user == nil %>
+			<td><%= 'Usuario eliminado' %></td>
+		<% else %>
 	  <td> <%= link_to(q.user.name, user_path(q.user)) if user = q.user %> </td>
+		<%end%>
       <td style = "padding-left: 10px "><%= link_to 'Ver', :controller => "questions", :action => :show, :id => q.id %></td>
     </tr>
   <% end %>
