@@ -95,8 +95,13 @@ end
 			@faculty = Faculty.find(params[:id])
 			@faculty.users.all.each do |u|
 				otra=Faculty.find_by(name: "Otra")
-				u.faculty = [otra]
+				u.faculty = otra
 				u.save
+			end
+			@faculty.questions.all.each do |q|
+				otra=Faculty.find_by(name: "Otra")
+				q.faculty = otra
+				q.save
 			end
 			if @faculty.destroy
 				flash[:success] = "La Facultad ha sido eliminada con exito."
