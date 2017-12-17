@@ -10,7 +10,7 @@
     <%= f.label :contraseña %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
-
+   <%= link_to("Olvidaste tu contraseña?", new_user_password_path, id:"forget-password", class:"forget-password") %>
   <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>
