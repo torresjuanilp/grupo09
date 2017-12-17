@@ -6,10 +6,14 @@
 			<h4> Datos del autor </h4>
 		<% if @question.user == nil %>
 			<h5> Usuario eliminado </h5>
+			<h5> Puntaje pregunta </h5>
+			<h5> <%= @question.score %> </h5>
 		<% else %>
 
 			<h5>Nombre: <%=  link_to(@question.user.name, user_path(@question.user)) if user = @question.user %> </h5>
 			<h5> <%= link_to(@question.user.apellido, user_path(@question.user)) if user = @question.user %></h5>
+			<h5> Puntaje pregunta </h5>
+			<h5> <%= @question.score %> </h5>
 		<% end %>
 
 		</div>
@@ -53,6 +57,39 @@
 					<h4><%= @question.descripcion %></h4>
 				</div>
 			</div>
+
+
+<!--- VOTOS? --->
+
+
+<div class="col-md-12" style="margin-left: 10px;">
+
+
+	<% if user_signed_in? %>	
+		<% if current_user.question_votes.find_by(question_id: @question.id) != nil %>
+			<div class="col-1 col-md-1">
+				<% if current_user.question_votes.find_by(question_id: @question.id).positive? %>
+					<h3> ↑ </h3>
+				<% else %>		
+					<h3> ↓ </h3>
+				<% end %>
+			</div>
+		<% else %>
+				<%= button_to "↑",  question_votes_create_path, method: :get, params: { positive: true, question_id: @question.id } %>
+				<%= button_to "↓", question_votes_create_path, method: :get, params: { positive: false, question_id: @question.id } %>
+
+			</div>
+		<% end %>
+	<% end %>
+
+
+
+<!--- VOTOS? --->
+
+
+
+
+
 		</div>
 
 	</div>

@@ -6,6 +6,7 @@ class Question < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :faculty, counter_cache: true
 	has_many :answers
+	has_many :question_votes, dependent: :destroy
 	accepts_nested_attributes_for :categories
 	validates_uniqueness_of :titulo
 	

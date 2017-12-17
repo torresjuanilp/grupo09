@@ -9,4 +9,5 @@ class User < ApplicationRecord
 	accepts_nested_attributes_for :questions
 	has_many :permits
 	belongs_to :faculty
+	has_many :question_votes, dependent: :destroy
 end
