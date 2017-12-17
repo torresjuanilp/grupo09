@@ -233,7 +233,18 @@
 			</div>             
 			<% end %>
 			<% end %>
-		</div>
+
+
+
+
+			<div class ="col-md-2">
+				<%= button_to "↑",  question_votes_create_path, method: :get, params: { positive: true, question_id: @question.id } %>
+				<%= button_to "↓", question_votes_create_path, method: :get, params: { positive: false, question_id: @question.id } %>
+			</div>
+
+
+
+
 	</div>
 </div>
 
