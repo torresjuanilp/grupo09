@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20171213151714) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.integer "questions_count", default: 0
+    t.integer "question_count", default: 0
   end
 
   create_table "categories_questions", id: false, force: :cascade do |t|
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20171213151714) do
     t.integer "category_id"
     t.string "slug"
     t.boolean "tiene_mejor_resp", default: false
+    t.integer "answers_count", default: 0
     t.integer "faculty_id"
     t.integer "visits_count", default: 0
   end
