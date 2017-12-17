@@ -20,6 +20,15 @@ Rails.application.configure do
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :user_name            => 'username@gmail.com',
+      :password             => 'password',
+      :authentication       => 'plain',
+        }
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates.

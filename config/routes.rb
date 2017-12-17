@@ -46,7 +46,6 @@ put "permits/:id" => "permits#update"
 	get '/users/questions' => 'users#questions'
   get '/users/answers' => 'users#answers'
     get '/users/mispermisos' => 'users#mispermisos'
-
   resources :users
 get "questions/:id" => "questions#show"
 get "questions" => "questions#index"

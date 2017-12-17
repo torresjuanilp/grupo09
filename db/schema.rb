@@ -10,14 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20171217150157) do
-=======
-ActiveRecord::Schema.define(version: 20171217131353) do
->>>>>>> f989cd86a3777a44ef08ae86f6704d1d8645b42c
+ActiveRecord::Schema.define(version: 20171217210145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "answer_id"
+    t.boolean "positive"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "answers", force: :cascade do |t|
     t.string "titulo"
@@ -28,6 +32,8 @@ ActiveRecord::Schema.define(version: 20171217131353) do
     t.datetime "updated_at", null: false
     t.integer "comment_id"
     t.boolean "mejor_resp", default: false
+    t.integer "answer_vote_id"
+    t.integer "score", default: 0
   end
 
   create_table "categories", force: :cascade do |t|
@@ -100,15 +106,9 @@ ActiveRecord::Schema.define(version: 20171217131353) do
     t.string "slug"
     t.boolean "tiene_mejor_resp", default: false
     t.integer "faculty_id"
-<<<<<<< HEAD
     t.integer "visits_count", default: 0
-    t.integer "answers_count", default: 0
-=======
-    t.integer "visits_count", default: 1
-    t.integer "answers_count"
-    t.integer "score", default: 0
     t.integer "question_vote_id"
->>>>>>> f989cd86a3777a44ef08ae86f6704d1d8645b42c
+    t.integer "answers_count", default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -133,9 +133,12 @@ ActiveRecord::Schema.define(version: 20171217131353) do
     t.integer "question_id"
     t.integer "permit_id"
     t.integer "faculty_id"
-    t.integer "num"
-    t.integer "vote_id"
+    t.integer "category_id"
+    t.string "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.string "auth_token"
     t.integer "question_vote_id"
+    t.integer "answer_vote_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
