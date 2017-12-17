@@ -23,7 +23,7 @@ class QuestionVotesController < ApplicationController
 			q = Question.find(@question_vote.question_id)
 			u = q.user
 			if @question_vote.positive?
-				q.score += 5
+				q.update_attribute(:score, q.score+5)
 				if u != nil
 					u.puntaje += 5
 					u.save
@@ -36,7 +36,7 @@ class QuestionVotesController < ApplicationController
 					end
 					u.save
 				end
-				q.score -= 2
+				q.update_attribute(:score, q.score-2)
 				cu = User.find(current_user.id)
 				cu.puntaje -=1
 				if cu.puntaje < 1
@@ -44,7 +44,6 @@ class QuestionVotesController < ApplicationController
 				end
 				cu.save
 			end 
-			q.save
 			flash[:success] = "El voto se registró con éxito."
 			redirect_to q
 	else 
@@ -78,7 +77,7 @@ class QuestionVotesController < ApplicationController
 			q = Question.find(@question_vote.question_id)
 			u = q.user
 			if @question_vote.positive?
-				q.score += 5
+				q.update_attribute(:score, q.score+5)
 				if u != nil
 					u.puntaje += 5
 					u.save
@@ -91,7 +90,7 @@ class QuestionVotesController < ApplicationController
 					end
 					u.save
 				end
-				q.score -= 2
+				q.update_attribute(:score, q.score-2)
 				cu = User.find(current_user.id)
 				cu.puntaje -=1
 				if cu.puntaje < 1
@@ -99,7 +98,7 @@ class QuestionVotesController < ApplicationController
 				end
 				cu.save
 			end 
-			q.save
+			
 			flash[:success] = "El voto se registró con éxito."
 			redirect_to q
 	else 
