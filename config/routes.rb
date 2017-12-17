@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'question_votes/index'
+
+  get 'question_votes/show'
+
+  get 'question_votes/new'
+
+  get 'question_votes/create'
+  post 'question_votes/create'
+
   resources :faculties
   get 'faculties/new' => 'faculties#new'
   
