@@ -8,7 +8,7 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
-
+config.action_mailer.raise_delivery_errors = true
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -59,17 +59,18 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "Proyecto_#{Rails.env}"
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+config.action_mailer.default_url_options = {:host => 'educandingcloud9.herokuapp.com', :protocol => 'http'}
   config.action_mailer.perform_caching = false
+   config.action_mailer.perform_deliveries = true
    config.action_mailer.delivery_method = :smtp
   config.action_mailer.default :charset => "utf-8"
   ActionMailer::Base.smtp_settings = {
       address:            "smtp.gmail.com",
       port:               587,
       domain:             "localhost:3000",    
-      user_name:          '...@gmail.com',
-      password:           '...',
-      authentication:     "login",
+      user_name:          'equipoeducanding@gmail.com',
+      password:           'academico22',
+      authentication:     "plain",
       :enable_starttls_auto => true
   }
 
