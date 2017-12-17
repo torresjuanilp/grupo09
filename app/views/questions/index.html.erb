@@ -22,7 +22,11 @@
     		<tr>
       			<td><%= q.titulo %></td>
       			<td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
-	  		<td> <%= link_to(q.user.name, user_path(q.user)) if user = q.user %> </td>
+	   <% if q.user == nil %>
+       <td> Usuario eliminado </td>
+       <% else %>
+        <td> <%= link_to(q.user.name, user_path(q.user)) if user = q.user %> </td>
+      <% end %>
       			<td style = "padding-left: 10px "><%= link_to 'Ver', :action => :show, :id => q.id %></td>
             <td> <%= q.answers_count %>
     		</tr>
@@ -44,7 +48,11 @@
             <td><%= q.titulo %></td>
             <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
             <td> <%= q.visits_count %> </td>
+               <% if q.user == nil %>
+            <td> Usuario eliminado </td>
+     <% else %>
         <td> <%= link_to(q.user.name, user_path(q.user)) if user = q.user %> </td>
+      <% end %>
             <td style = "padding-left: 10px "><%= link_to 'Ver', :action => :show, :id => q.id %></td
         </tr>
     <% end %>
@@ -64,7 +72,11 @@
         <tr>
             <td><%= q.titulo %></td>
             <td style= "width: 200px; height: 20px; overflow: hidden;"><%= q.descripcion %></td>
+              <% if q.user == nil %>
+          <td> Usuario eliminado </td>
+           <% else %>
         <td> <%= link_to(q.user.name, user_path(q.user)) if user = q.user %> </td>
+      <% end %>
             <td style = "padding-left: 10px "><%= link_to 'Ver', :action => :show, :id => q.id %></td>
             <td> <%= q.answers_count %>
         </tr>
