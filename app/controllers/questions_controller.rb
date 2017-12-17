@@ -67,6 +67,7 @@ class QuestionsController < ApplicationController
   def create
 # Se debe preguntar si el usuario cuenta con permisos para realizar crear una pregunta.
     	@question = Question.new(question_params)
+   
     	@question.titulo = params[:question][:titulo]
     	@question.descripcion = params[:question][:descripcion]
          	@question.user_id = current_user.id
@@ -83,6 +84,10 @@ class QuestionsController < ApplicationController
 				@question.categories = [gen]
 			end
 			if @question.save
+           @question.categories.each do |ca|
+          ca.question_count += 1
+          ca.save
+        end
 				flash[:success] = "La pregunta ha sido publicada con exito."
 				redirect_to @question
 			else 
@@ -120,6 +125,10 @@ class QuestionsController < ApplicationController
   def destroy
     if current_user == @question.user
     @question.answers.destroy_all
+     @question.categories.each do |ca|
+          ca.question_count -= 1
+          ca.save
+      end
     @question.destroy
     flash[:success] = "La pregunta ha sido eliminada."
     redirect_to "/questions"

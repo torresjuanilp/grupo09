@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Categorías</h1>
+<h3>Categorías</h3>
 
 <table class="table">
   <tr>
@@ -11,7 +11,7 @@
 	<% end %>
   </tr>
 
-	<% @categories.order('name ASC').each do |c| %>
+	<% @categories.order("name DESC").each do |c| %>
 		<tr>
 		<td> <%= c.name %> </td>
 		<td> <%= link_to 'Ver', :action => :show, :id => c.id %> </td>
@@ -30,7 +30,25 @@
 		<% end %>
 	</tr>
 </table>
+<h3> Categoria mas utilizadas
+<table class="table">
+  <tr>
+    <th>Categoría</th>
+    <th>Ver Preguntas</th>
+    <th>Cantidad de preguntas</th>
+  </tr>
 
+	<% @categories.catemas.each do |c| %>
+		<tr>
+		<td> <%= c.name %> </td>
+		<td> <%= link_to 'Ver', :action => :show, :id => c.id %> </td>
+			<td> <%= c.question_count %>
+
+
+		</tr>
+	<% end %>
+	
+</table>
 
 </br>
 
