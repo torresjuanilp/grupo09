@@ -10,4 +10,5 @@ class User < ApplicationRecord
 	has_many :permits
 	belongs_to :faculty
 	has_many :question_votes, dependent: :destroy
+	has_many :answer_votes, dependent: :destroy
 end

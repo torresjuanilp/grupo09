@@ -60,12 +60,12 @@
 
 
 <!--- VOTOS? --->
-<% if @question.user != current_user %>
 
+<% if user_signed_in? %>
 <div class="col-md-12" style="margin-left: 10px;">
 
 
-	<% if user_signed_in? %>	
+	<% if @question.user != current_user %>
 		<% if current_user.question_votes.find_by(question_id: @question.id) != nil %>
 			<div class="col-1 col-md-1">
 				<% if current_user.question_votes.find_by(question_id: @question.id).positive? %>
@@ -195,6 +195,7 @@
 			<% else %>
 				<h5> creador : <%= link_to(ans.user.name, user_path(ans.user)) if user = ans.user %> </h5>
 			<% end %>
+				<h5> puntaje <%= ans.score %> </h5>
 				<% d=ans.created_at %>
 				<h5>fecha : <%= d.strftime("%d/%m/%Y %H:%M") %> </h5>
 			</div>
@@ -202,6 +203,36 @@
 			<div class="col-md-6">
 				<h5> <%= ans.texto %> </h5>
 			</div>
+
+
+
+<!--- VOTOS --->
+
+
+<% if user_signed_in? %>
+	<% if ans.user != current_user %>		
+		<% if current_user.answer_votes.find_by(answer_id: ans.id) != nil %>
+			<div class ="col-md-2">
+				<% if current_user.answer_votes.find_by(answer_id: ans.id).positive? %>
+					<h3> ↑ </h3> </div>
+				<% else %>		
+					<h3> ↓ </h3> </div>
+				<% end %>
+			<% else %>
+				<div class ="col-md-2">
+				<%= button_to "↑",  answer_votes_create_path, method: :get, params: { positive: true, answer_id: ans.id } %>
+				<%= button_to "↓", answer_votes_create_path, method: :get, params: { positive: false, answer_id: ans.id } %>
+				</div>
+			<% end %>
+		<% end %>
+	<% end %>
+
+
+
+
+
+
+
 
 		</div>
 			<% if current_user %>
@@ -237,10 +268,7 @@
 
 
 
-			<div class ="col-md-2">
-				<%= button_to "↑",  question_votes_create_path, method: :get, params: { positive: true, question_id: @question.id } %>
-				<%= button_to "↓", question_votes_create_path, method: :get, params: { positive: false, question_id: @question.id } %>
-			</div>
+			
 
 
 

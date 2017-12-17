@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'answer_votes/create'
+
+  get 'new/create'
+
   get 'question_votes/index'
 
   get 'question_votes/show'
