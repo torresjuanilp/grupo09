@@ -37,17 +37,8 @@
 				<%= link_to "Eliminar",@question, method: :delete  ,data: { confirm: "Estas seguro de eliminar esta pregunta?" } ,class: 'btn btn-primary btn-md',
 				style:"margin-top:10px; color:white;"%>
 			</div>
-			<% else %> 
 
-				<% if current_user != @question.user %>
-						<div class="col-md-1">
-						
-								
-  						<%= link_to questions_path(@user), class: "btn btn-default -btn-sm" do   %>
-								<i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i>
-						<% end %>
-						</div>
-						<% end %>
+			
 			<% end %>
 		</div>
 		<div class="panel-body">
