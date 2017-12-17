@@ -36,7 +36,7 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings = {
       address:            "smtp.gmail.com",
       port:               587,
-      domain:             "https://educandingcloud9.herokuapp.com",    
+      domain:             "gmail.com",    
       user_name:          'equipoeducanding@gmail.com',
       password:           'desarrolladores+',
       authentication:     "plain",
