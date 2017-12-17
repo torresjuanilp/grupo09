@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217210145) do
+ActiveRecord::Schema.define(version: 20171217183636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(version: 20171217210145) do
     t.boolean "tiene_mejor_resp", default: false
     t.integer "faculty_id"
     t.integer "visits_count", default: 0
-    t.integer "question_vote_id"
     t.integer "answers_count", default: 0
+    t.integer "question_vote_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -133,11 +133,8 @@ ActiveRecord::Schema.define(version: 20171217210145) do
     t.integer "question_id"
     t.integer "permit_id"
     t.integer "faculty_id"
-    t.integer "category_id"
-    t.string "password_reset_token"
-    t.datetime "password_reset_sent_at"
-    t.string "auth_token"
     t.integer "question_vote_id"
+    t.integer "category_id"
     t.integer "answer_vote_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
