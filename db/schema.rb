@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213151714) do
+ActiveRecord::Schema.define(version: 20171217131353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(version: 20171213151714) do
     t.boolean "enabled"
   end
 
+  create_table "question_votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "positive"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "titulo"
     t.string "descripcion"
@@ -87,7 +95,10 @@ ActiveRecord::Schema.define(version: 20171213151714) do
     t.string "slug"
     t.boolean "tiene_mejor_resp", default: false
     t.integer "faculty_id"
-    t.integer "visits_count", default: 0
+    t.integer "visits_count", default: 1
+    t.integer "answers_count"
+    t.integer "score", default: 0
+    t.integer "question_vote_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,6 +123,9 @@ ActiveRecord::Schema.define(version: 20171213151714) do
     t.integer "question_id"
     t.integer "permit_id"
     t.integer "faculty_id"
+    t.integer "num"
+    t.integer "vote_id"
+    t.integer "question_vote_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
